@@ -20,14 +20,15 @@
  * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
  * DEALINGS IN THE SOFTWARE.
  */
+
 namespace Facebook\Tests\GraphNode;
 
-use Facebook\Response;
-use Facebook\GraphNode\GraphNodeFactory;
-use Facebook\GraphNode\GraphGroup;
-use Facebook\GraphNode\GraphPicture;
-use Facebook\GraphNode\GraphPage;
 use Facebook\GraphNode\GraphCoverPhoto;
+use Facebook\GraphNode\GraphGroup;
+use Facebook\GraphNode\GraphNodeFactory;
+use Facebook\GraphNode\GraphPage;
+use Facebook\GraphNode\GraphPicture;
+use Facebook\Response;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Prophecy\ObjectProphecy;
 
@@ -46,7 +47,7 @@ class GraphEventTest extends TestCase
     public function testCoverGetsCastAsGraphCoverPhoto()
     {
         $dataFromGraph = [
-            'cover' => ['id' => '1337']
+            'cover' => ['id' => '1337'],
         ];
 
         $this->responseMock->shouldReceive('getDecodedBody')->andReturn($dataFromGraph);
@@ -60,7 +61,7 @@ class GraphEventTest extends TestCase
     public function testPlaceGetsCastAsGraphPage()
     {
         $dataFromGraph = [
-            'place' => ['id' => '1337']
+            'place' => ['id' => '1337'],
         ];
 
         $this->responseMock->shouldReceive('getDecodedBody')->andReturn($dataFromGraph);
@@ -74,7 +75,7 @@ class GraphEventTest extends TestCase
     public function testPictureGetsCastAsGraphPicture()
     {
         $dataFromGraph = [
-            'picture' => ['id' => '1337']
+            'picture' => ['id' => '1337'],
         ];
 
         $this->responseMock->shouldReceive('getDecodedBody')->andReturn($dataFromGraph);
@@ -88,7 +89,7 @@ class GraphEventTest extends TestCase
     public function testParentGroupGetsCastAsGraphGroup()
     {
         $dataFromGraph = [
-            'parent_group' => ['id' => '1337']
+            'parent_group' => ['id' => '1337'],
         ];
 
         $this->responseMock->shouldReceive('getDecodedBody')->andReturn($dataFromGraph);

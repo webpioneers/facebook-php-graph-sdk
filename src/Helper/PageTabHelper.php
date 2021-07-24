@@ -20,14 +20,12 @@
  * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
  * DEALINGS IN THE SOFTWARE.
  */
+
 namespace Facebook\Helper;
 
 use Facebook\Application;
 use Facebook\Client;
 
-/**
- * @package Facebook
- */
 class PageTabHelper extends CanvasHelper
 {
     /**

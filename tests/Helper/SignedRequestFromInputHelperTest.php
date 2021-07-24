@@ -20,12 +20,13 @@
  * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
  * DEALINGS IN THE SOFTWARE.
  */
+
 namespace Facebook\Tests\Helper;
 
 use Facebook\Application;
+use Facebook\Authentication\AccessToken;
 use Facebook\Tests\Fixtures\FooSignedRequestHelper;
 use Facebook\Tests\Fixtures\FooSignedRequestHelperClient;
-use Facebook\Authentication\AccessToken;
 use PHPUnit\Framework\TestCase;
 
 class SignedRequestFromInputHelperTest extends TestCase

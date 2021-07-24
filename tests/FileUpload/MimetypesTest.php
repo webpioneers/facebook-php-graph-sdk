@@ -20,6 +20,7 @@
  * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
  * DEALINGS IN THE SOFTWARE.
  */
+
 namespace Facebook\Tests\FileUpload;
 
 use Facebook\FileUpload\Mimetypes;
@@ -27,7 +28,6 @@ use PHPUnit\Framework\TestCase;
 
 class MimetypesTest extends TestCase
 {
-
     /**
      * Taken from Guzzle.
      *

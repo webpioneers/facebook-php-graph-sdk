@@ -20,20 +20,18 @@
  * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
  * DEALINGS IN THE SOFTWARE.
  */
+
 namespace Facebook\Helper;
 
 use Facebook\Authentication\AccessToken;
 use Facebook\Authentication\OAuth2Client;
 use Facebook\Exception\SDKException;
-use Facebook\PersistentData\SessionPersistentDataHandler;
 use Facebook\PersistentData\PersistentDataInterface;
+use Facebook\PersistentData\SessionPersistentDataHandler;
 use Facebook\Url\UrlDetectionHandler;
-use Facebook\Url\UrlManipulator;
 use Facebook\Url\UrlDetectionInterface;
+use Facebook\Url\UrlManipulator;
 
-/**
- * @package Facebook
- */
 class RedirectLoginHelper
 {
     /**
@@ -147,11 +145,11 @@ class RedirectLoginHelper
         }
 
         $params = [
-            'next' => $next,
+            'next'         => $next,
             'access_token' => $accessToken->getValue(),
         ];
 
-        return 'https://www.facebook.com/logout.php?' . http_build_query($params, null, $separator);
+        return 'https://www.facebook.com/logout.php?'.http_build_query($params, null, $separator);
     }
 
     /**

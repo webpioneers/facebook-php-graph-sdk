@@ -20,13 +20,11 @@
  * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
  * DEALINGS IN THE SOFTWARE.
  */
+
 namespace Facebook;
 
 use Facebook\Exception\SDKException;
 
-/**
- * @package Facebook
- */
 class SignedRequest
 {
     /**
@@ -136,7 +134,7 @@ class SignedRequest
         $hashedSig = $this->hashSignature($encodedPayload);
         $encodedSig = $this->base64UrlEncode($hashedSig);
 
-        return $encodedSig . '.' . $encodedPayload;
+        return $encodedSig.'.'.$encodedPayload;
     }
 
     /**

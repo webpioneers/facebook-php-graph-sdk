@@ -20,15 +20,13 @@
  * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
  * DEALINGS IN THE SOFTWARE.
  */
+
 namespace Facebook;
 
-use Facebook\GraphNode\GraphNodeFactory;
 use Facebook\Exception\ResponseException;
 use Facebook\Exception\SDKException;
+use Facebook\GraphNode\GraphNodeFactory;
 
-/**
- * @package Facebook
- */
 class Response
 {
     /**

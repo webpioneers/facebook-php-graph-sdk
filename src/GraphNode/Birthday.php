@@ -20,14 +20,13 @@
  * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
  * DEALINGS IN THE SOFTWARE.
  */
+
 namespace Facebook\GraphNode;
 
 use DateTime;
 
 /**
  * Birthday object to handle various Graph return formats.
- *
- * @package Facebook
  */
 class Birthday extends DateTime
 {

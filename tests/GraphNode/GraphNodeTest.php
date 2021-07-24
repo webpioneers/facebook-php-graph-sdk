@@ -20,6 +20,7 @@
  * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
  * DEALINGS IN THE SOFTWARE.
  */
+
 namespace Facebook\Tests\GraphNode;
 
 use Facebook\GraphNode\Birthday;
@@ -117,7 +118,7 @@ class GraphNodeTest extends TestCase
     public function testGettingGraphNodeAsAnArrayWillNotUncastTheDateTimeObject()
     {
         $graphNode = new GraphNode([
-            'id' => '123',
+            'id'           => '123',
             'created_time' => '2014-07-15T03:44:53+0000',
         ]);
 
@@ -129,7 +130,7 @@ class GraphNodeTest extends TestCase
     public function testGettingAGraphNodeAsAStringWillSafelyRepresentDateTimes()
     {
         $graphNode = new GraphNode([
-            'id' => '123',
+            'id'           => '123',
             'created_time' => '2014-07-15T03:44:53+0000',
         ]);
 

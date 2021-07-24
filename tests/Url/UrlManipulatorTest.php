@@ -20,6 +20,7 @@
  * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
  * DEALINGS IN THE SOFTWARE.
  */
+
 namespace Facebook\Tests\Url;
 
 use Facebook\Url\UrlManipulator;
@@ -109,7 +110,7 @@ class UrlManipulatorTest extends TestCase
 
         $params = [
             'access_token' => 'foo',
-            'bar' => 'baz',
+            'bar'          => 'baz',
         ];
         $url = 'https://www.foo.com/?foo=bar';
         $processed_url = UrlManipulator::appendParamsToUrl($url, $params);

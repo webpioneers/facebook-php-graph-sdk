@@ -23,9 +23,9 @@
 
 namespace Facebook\Tests\FileUpload;
 
-use Facebook\FileUpload\File;
 use Facebook\Application;
 use Facebook\Client;
+use Facebook\FileUpload\File;
 use Facebook\FileUpload\ResumableUploader;
 use Facebook\FileUpload\TransferChunk;
 use Facebook\Tests\Fixtures\FakeGraphApiForResumableUpload;

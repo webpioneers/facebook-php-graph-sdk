@@ -20,6 +20,7 @@
  * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
  * DEALINGS IN THE SOFTWARE.
  */
+
 namespace Facebook\Tests\Authentication;
 
 use Facebook\Authentication\AccessTokenMetadata;
@@ -29,24 +30,24 @@ class AccessTokenMetadataTest extends TestCase
 {
     protected $graphResponseData = [
         'data' => [
-            'app_id' => '123',
+            'app_id'      => '123',
             'application' => 'Foo App',
-            'error' => [
-                'code' => 190,
+            'error'       => [
+                'code'    => 190,
                 'message' => 'Foo error message.',
                 'subcode' => 463,
             ],
-            'issued_at' => 1422110200,
+            'issued_at'  => 1422110200,
             'expires_at' => 1422115200,
-            'is_valid' => false,
-            'metadata' => [
-                'sso' => 'iphone-sso',
-                'auth_type' => 'rerequest',
+            'is_valid'   => false,
+            'metadata'   => [
+                'sso'        => 'iphone-sso',
+                'auth_type'  => 'rerequest',
                 'auth_nonce' => 'no-replicatey',
             ],
-            'scopes' => ['public_profile', 'basic_info', 'user_friends'],
+            'scopes'     => ['public_profile', 'basic_info', 'user_friends'],
             'profile_id' => '1000',
-            'user_id' => '1337',
+            'user_id'    => '1337',
         ],
     ];
 

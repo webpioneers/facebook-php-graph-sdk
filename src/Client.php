@@ -20,6 +20,7 @@
  * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
  * DEALINGS IN THE SOFTWARE.
  */
+
 namespace Facebook;
 
 use Facebook\Exception\SDKException;
@@ -27,9 +28,6 @@ use Http\Client\HttpClient;
 use Http\Discovery\HttpClientDiscovery;
 use Http\Discovery\MessageFactoryDiscovery;
 
-/**
- * @package Facebook
- */
 class Client
 {
     /**
@@ -150,13 +148,13 @@ class Client
     public function prepareRequestMessage(Request $request)
     {
         $postToVideoUrl = $request->containsVideoUploads();
-        $url = $this->getBaseGraphUrl($postToVideoUrl) . $request->getUrl();
+        $url = $this->getBaseGraphUrl($postToVideoUrl).$request->getUrl();
 
         // If we're sending files they should be sent as multipart/form-data
         if ($request->containsFileUploads()) {
             $requestBody = $request->getMultipartBody();
             $request->setHeaders([
-                'Content-Type' => 'multipart/form-data; boundary=' . $requestBody->getBoundary(),
+                'Content-Type' => 'multipart/form-data; boundary='.$requestBody->getBoundary(),
             ]);
         } else {
             $requestBody = $request->getUrlEncodedBody();
@@ -199,7 +197,7 @@ class Client
         // Prepare headers from associative array to a single string for each header.
         $responseHeaders = [];
         foreach ($psr7Response->getHeaders() as $name => $values) {
-            $responseHeaders[] = sprintf('%s: %s', $name, implode(", ", $values));
+            $responseHeaders[] = sprintf('%s: %s', $name, implode(', ', $values));
         }
 
         $Response = new Response(

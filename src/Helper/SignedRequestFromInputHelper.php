@@ -20,18 +20,15 @@
  * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
  * DEALINGS IN THE SOFTWARE.
  */
+
 namespace Facebook\Helper;
 
-use Facebook\Facebook;
 use Facebook\Application;
-use Facebook\Client;
-use Facebook\SignedRequest;
 use Facebook\Authentication\AccessToken;
 use Facebook\Authentication\OAuth2Client;
+use Facebook\Client;
+use Facebook\SignedRequest;
 
-/**
- * @package Facebook
- */
 abstract class SignedRequestFromInputHelper
 {
     /**
@@ -154,8 +151,8 @@ abstract class SignedRequestFromInputHelper
      */
     public function getRawSignedRequestFromCookie()
     {
-        if (isset($_COOKIE['fbsr_' . $this->app->getId()])) {
-            return $_COOKIE['fbsr_' . $this->app->getId()];
+        if (isset($_COOKIE['fbsr_'.$this->app->getId()])) {
+            return $_COOKIE['fbsr_'.$this->app->getId()];
         }
 
         return null;

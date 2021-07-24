@@ -20,13 +20,14 @@
  * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
  * DEALINGS IN THE SOFTWARE.
  */
+
 namespace Facebook\Tests;
 
 use Facebook\Application;
+use Facebook\Exception\ResponseException;
+use Facebook\GraphNode\GraphNode;
 use Facebook\Request;
 use Facebook\Response;
-use Facebook\GraphNode\GraphNode;
-use Facebook\Exception\ResponseException;
 use PHPUnit\Framework\TestCase;
 
 class ResponseTest extends TestCase
@@ -78,7 +79,7 @@ class ResponseTest extends TestCase
 
         $this->assertFalse($response->isError(), 'Did not expect Response to return an error.');
         $this->assertEquals([
-            'id' => '123',
+            'id'   => '123',
             'name' => 'Foo',
         ], $decodedResponse);
         $this->assertInstanceOf(GraphNode::class, $graphNode);
@@ -105,7 +106,7 @@ class ResponseTest extends TestCase
 
         $this->assertFalse($response->isError(), 'Did not expect Response to return an error.');
         $this->assertEquals([
-            'id' => '123',
+            'id'   => '123',
             'name' => 'Foo',
         ], $decodedResponse);
     }

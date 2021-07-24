@@ -20,6 +20,7 @@
  * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
  * DEALINGS IN THE SOFTWARE.
  */
+
 namespace Facebook\Tests\Fixtures;
 
 use Facebook\Authentication\OAuth2Client;
@@ -28,6 +29,6 @@ class FooRedirectLoginOAuth2Client extends OAuth2Client
 {
     public function getAccessTokenFromCode($code, $redirectUri = '', $machineId = null)
     {
-        return 'foo_token_from_code|' . $code . '|' . $redirectUri;
+        return 'foo_token_from_code|'.$code.'|'.$redirectUri;
     }
 }

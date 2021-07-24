@@ -20,6 +20,7 @@
  * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
  * DEALINGS IN THE SOFTWARE.
  */
+
 namespace Facebook\Http;
 
 use Facebook\FileUpload\File;
@@ -27,7 +28,6 @@ use Facebook\FileUpload\File;
 /**
  * Some things copied from Guzzle.
  *
- * @package Facebook
  *
  * @see https://github.com/guzzle/guzzle/blob/master/src/Post/MultipartBody.php
  */

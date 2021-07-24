@@ -20,21 +20,22 @@
  * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
  * DEALINGS IN THE SOFTWARE.
  */
+
 namespace Facebook\Tests;
 
-use Facebook\Exception\SDKException;
 use Facebook\Application;
-use Facebook\Request;
 use Facebook\BatchRequest;
+use Facebook\BatchResponse;
 use Facebook\Client;
+use Facebook\Exception\SDKException;
 use Facebook\FileUpload\File;
 use Facebook\FileUpload\Video;
 // These are needed when you uncomment the HTTP clients below.
+use Facebook\GraphNode\GraphNode;
+use Facebook\Request;
+use Facebook\Response;
 use Facebook\Tests\Fixtures\MyFooBatchHttpClient;
 use Facebook\Tests\Fixtures\MyFooHttpClient;
-use Facebook\Response;
-use Facebook\BatchResponse;
-use Facebook\GraphNode\GraphNode;
 use Http\Client\HttpClient;
 use PHPUnit\Framework\TestCase;
 
@@ -149,11 +150,11 @@ class ClientTest extends TestCase
         $fbRequests = [
             new Request($this->fbApp, 'token', 'POST', '/photo', [
                 'message' => 'foobar',
-                'source' => new File(__DIR__ . '/foo.txt'),
+                'source'  => new File(__DIR__.'/foo.txt'),
             ]),
             new Request($this->fbApp, 'token', 'POST', '/video', [
                 'message' => 'foobar',
-                'source' => new Video(__DIR__ . '/foo.txt'),
+                'source'  => new Video(__DIR__.'/foo.txt'),
             ]),
         ];
         $fbBatchRequest = new BatchRequest($this->fbApp, $fbRequests);
@@ -183,7 +184,7 @@ class ClientTest extends TestCase
 
     public function testARequestWithFilesWillBeMultipart()
     {
-        $myFile = new File(__DIR__ . '/foo.txt');
+        $myFile = new File(__DIR__.'/foo.txt');
         $fbRequest = new Request($this->fbApp, 'token', 'POST', '/foo', ['file' => $myFile]);
         $response = $this->fbClient->sendRequest($fbRequest);
 
@@ -208,11 +209,11 @@ class ClientTest extends TestCase
         $this->initializeTestApp();
 
         // Create a test user
-        $testUserPath = '/' . TestCredentials::$appId . '/accounts/test-users';
+        $testUserPath = '/'.TestCredentials::$appId.'/accounts/test-users';
         $params = [
-            'installed' => true,
-            'name' => 'Foo Phpunit User',
-            'locale' => 'en_US',
+            'installed'   => true,
+            'name'        => 'Foo Phpunit User',
+            'locale'      => 'en_US',
             'permissions' => implode(',', ['read_stream', 'user_photos']),
         ];
 
@@ -246,7 +247,7 @@ class ClientTest extends TestCase
             static::$testApp,
             static::$testApp->getAccessToken(),
             'DELETE',
-            '/' . $testUserId
+            '/'.$testUserId
         );
         $graphNode = static::$testClient->sendRequest($request)->getGraphNode();
 
@@ -255,7 +256,7 @@ class ClientTest extends TestCase
 
     public function initializeTestApp()
     {
-        if (!file_exists(__DIR__ . '/TestCredentials.php')) {
+        if (!file_exists(__DIR__.'/TestCredentials.php')) {
             throw new SDKException(
                 'You must create a TestCredentials.php file from TestCredentials.php.dist'
             );

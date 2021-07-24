@@ -20,18 +20,16 @@
  * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
  * DEALINGS IN THE SOFTWARE.
  */
+
 namespace Facebook\GraphNode;
 
-/**
- * @package Facebook
- */
 class GraphAchievement extends GraphNode
 {
     /**
      * @var array maps object key names to Graph object types
      */
     protected static $graphNodeMap = [
-        'from' => GraphUser::class,
+        'from'        => GraphUser::class,
         'application' => GraphApplication::class,
     ];
 

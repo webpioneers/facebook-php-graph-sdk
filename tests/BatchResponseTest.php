@@ -20,14 +20,15 @@
  * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
  * DEALINGS IN THE SOFTWARE.
  */
+
 namespace Facebook\Tests;
 
 use Facebook\Application;
-use Facebook\Request;
-use Facebook\Response;
 use Facebook\BatchRequest;
 use Facebook\BatchResponse;
 use Facebook\GraphNode\GraphNode;
+use Facebook\Request;
+use Facebook\Response;
 use PHPUnit\Framework\TestCase;
 
 class BatchResponseTest extends TestCase
@@ -98,8 +99,8 @@ class BatchResponseTest extends TestCase
         $graphResponseJson .= ']';
         $response = new Response($this->request, $graphResponseJson, 200);
         $batchRequest = new BatchRequest($this->app, [
-            'req_one' => new Request($this->app, 'token'),
-            'req_two' => new Request($this->app, 'token'),
+            'req_one'   => new Request($this->app, 'token'),
+            'req_two'   => new Request($this->app, 'token'),
             'req_three' => new Request($this->app, 'token'),
         ]);
         $batchResponse = new BatchResponse($batchRequest, $response);
@@ -158,8 +159,8 @@ class BatchResponseTest extends TestCase
         $this->assertEquals('v2.5', $batchResponse[1]->getGraphVersion());
         $this->assertEquals('"barTag"', $batchResponse[1]->getETag());
         $this->assertEquals([
-          'Facebook-API-Version' => 'v2.5',
-          'ETag' => '"barTag"',
+            'Facebook-API-Version' => 'v2.5',
+            'ETag'                 => '"barTag"',
         ], $batchResponse[1]->getHeaders());
     }
 }

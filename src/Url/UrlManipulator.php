@@ -20,11 +20,9 @@
  * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
  * DEALINGS IN THE SOFTWARE.
  */
+
 namespace Facebook\Url;
 
-/**
- * @package Facebook
- */
 class UrlManipulator
 {
     /**
@@ -50,17 +48,17 @@ class UrlManipulator
             }
 
             if (count($params) > 0) {
-                $query = '?' . http_build_query($params, null, '&');
+                $query = '?'.http_build_query($params, null, '&');
             }
         }
 
-        $scheme = isset($parts['scheme']) ? $parts['scheme'] . '://' : '';
+        $scheme = isset($parts['scheme']) ? $parts['scheme'].'://' : '';
         $host = $parts['host'] ?? '';
-        $port = isset($parts['port']) ? ':' . $parts['port'] : '';
+        $port = isset($parts['port']) ? ':'.$parts['port'] : '';
         $path = $parts['path'] ?? '';
-        $fragment = isset($parts['fragment']) ? '#' . $parts['fragment'] : '';
+        $fragment = isset($parts['fragment']) ? '#'.$parts['fragment'] : '';
 
-        return $scheme . $host . $port . $path . $query . $fragment;
+        return $scheme.$host.$port.$path.$query.$fragment;
     }
 
     /**
@@ -78,7 +76,7 @@ class UrlManipulator
         }
 
         if (strpos($url, '?') === false) {
-            return $url . '?' . http_build_query($newParams, null, '&');
+            return $url.'?'.http_build_query($newParams, null, '&');
         }
 
         list($path, $query) = explode('?', $url, 2);
@@ -91,7 +89,7 @@ class UrlManipulator
         // Sort for a predicable order
         ksort($newParams);
 
-        return $path . '?' . http_build_query($newParams, null, '&');
+        return $path.'?'.http_build_query($newParams, null, '&');
     }
 
     /**
@@ -147,7 +145,7 @@ class UrlManipulator
             return '';
         }
 
-        return strpos($string, '/') === 0 ? $string : '/' . $string;
+        return strpos($string, '/') === 0 ? $string : '/'.$string;
     }
 
     /**
@@ -159,6 +157,6 @@ class UrlManipulator
      */
     public static function baseGraphUrlEndpoint($urlToTrim)
     {
-        return '/' . preg_replace('/^https:\/\/.+\.facebook\.com(\/v.+?)?\//', '', $urlToTrim);
+        return '/'.preg_replace('/^https:\/\/.+\.facebook\.com(\/v.+?)?\//', '', $urlToTrim);
     }
 }

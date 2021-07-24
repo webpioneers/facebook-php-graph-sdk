@@ -20,24 +20,14 @@
  * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
  * DEALINGS IN THE SOFTWARE.
  */
+
 namespace Facebook\GraphNode;
 
-use Facebook\Response;
 use Facebook\Exception\SDKException;
+use Facebook\Response;
 
 /**
  * Class GraphNodeFactory.
- *
- * @package Facebook
- *
- * ## Assumptions ##
- * GraphEdge - is ALWAYS a numeric array
- * GraphEdge - is ALWAYS an array of GraphNode types
- * GraphNode - is ALWAYS an associative array
- * GraphNode - MAY contain GraphNode's "recurrable"
- * GraphNode - MAY contain GraphEdge's "recurrable"
- * GraphNode - MAY contain DateTime's "primitives"
- * GraphNode - MAY contain string's "primitives"
  */
 class GraphNodeFactory
 {
@@ -103,7 +93,7 @@ class GraphNodeFactory
      */
     public function makeGraphAchievement()
     {
-        return $this->makeGraphNode(static::BASE_GRAPH_OBJECT_PREFIX . 'GraphAchievement');
+        return $this->makeGraphNode(static::BASE_GRAPH_OBJECT_PREFIX.'GraphAchievement');
     }
 
     /**
@@ -115,7 +105,7 @@ class GraphNodeFactory
      */
     public function makeGraphAlbum()
     {
-        return $this->makeGraphNode(static::BASE_GRAPH_OBJECT_PREFIX . 'GraphAlbum');
+        return $this->makeGraphNode(static::BASE_GRAPH_OBJECT_PREFIX.'GraphAlbum');
     }
 
     /**
@@ -127,7 +117,7 @@ class GraphNodeFactory
      */
     public function makeGraphPage()
     {
-        return $this->makeGraphNode(static::BASE_GRAPH_OBJECT_PREFIX . 'GraphPage');
+        return $this->makeGraphNode(static::BASE_GRAPH_OBJECT_PREFIX.'GraphPage');
     }
 
     /**
@@ -139,7 +129,7 @@ class GraphNodeFactory
      */
     public function makeGraphSessionInfo()
     {
-        return $this->makeGraphNode(static::BASE_GRAPH_OBJECT_PREFIX . 'GraphSessionInfo');
+        return $this->makeGraphNode(static::BASE_GRAPH_OBJECT_PREFIX.'GraphSessionInfo');
     }
 
     /**
@@ -151,7 +141,7 @@ class GraphNodeFactory
      */
     public function makeGraphUser()
     {
-        return $this->makeGraphNode(static::BASE_GRAPH_OBJECT_PREFIX . 'GraphUser');
+        return $this->makeGraphNode(static::BASE_GRAPH_OBJECT_PREFIX.'GraphUser');
     }
 
     /**
@@ -163,7 +153,7 @@ class GraphNodeFactory
      */
     public function makeGraphEvent()
     {
-        return $this->makeGraphNode(static::BASE_GRAPH_OBJECT_PREFIX . 'GraphEvent');
+        return $this->makeGraphNode(static::BASE_GRAPH_OBJECT_PREFIX.'GraphEvent');
     }
 
     /**
@@ -175,7 +165,7 @@ class GraphNodeFactory
      */
     public function makeGraphGroup()
     {
-        return $this->makeGraphNode(static::BASE_GRAPH_OBJECT_PREFIX . 'GraphGroup');
+        return $this->makeGraphNode(static::BASE_GRAPH_OBJECT_PREFIX.'GraphGroup');
     }
 
     /**
@@ -194,7 +184,7 @@ class GraphNodeFactory
         $this->validateResponseCastableAsGraphEdge();
 
         if ($subclassName && $auto_prefix) {
-            $subclassName = static::BASE_GRAPH_OBJECT_PREFIX . $subclassName;
+            $subclassName = static::BASE_GRAPH_OBJECT_PREFIX.$subclassName;
         }
 
         return $this->castAsGraphNodeOrGraphEdge($this->decodedBody, $subclassName);
@@ -334,7 +324,7 @@ class GraphNodeFactory
         $metaData = $this->getMetaData($data);
 
         // We'll need to make an edge endpoint for this in case it's a GraphEdge (for cursor pagination)
-        $parentGraphEdgeEndpoint = $parentNodeId && $parentKey ? '/' . $parentNodeId . '/' . $parentKey : null;
+        $parentGraphEdgeEndpoint = $parentNodeId && $parentKey ? '/'.$parentNodeId.'/'.$parentKey : null;
         $className = static::BASE_GRAPH_EDGE_CLASS;
 
         return new $className($this->response->getRequest(), $dataList, $metaData, $parentGraphEdgeEndpoint, $subclassName);
@@ -384,6 +374,6 @@ class GraphNodeFactory
             return;
         }
 
-        throw new SDKException('The given subclass "' . $subclassName . '" is not valid. Cannot cast to an object that is not a GraphNode subclass.', 620);
+        throw new SDKException('The given subclass "'.$subclassName.'" is not valid. Cannot cast to an object that is not a GraphNode subclass.', 620);
     }
 }
