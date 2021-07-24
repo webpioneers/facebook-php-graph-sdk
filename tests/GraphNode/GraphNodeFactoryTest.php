@@ -20,17 +20,18 @@
  * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
  * DEALINGS IN THE SOFTWARE.
  */
+
 namespace Facebook\Tests\GraphNode;
 
 use Facebook\Application;
+use Facebook\GraphNode\GraphAlbum;
+use Facebook\GraphNode\GraphEdge;
+use Facebook\GraphNode\GraphNode;
+use Facebook\GraphNode\GraphNodeFactory;
 use Facebook\Request;
 use Facebook\Response;
-use Facebook\GraphNode\GraphNodeFactory;
-use Facebook\GraphNode\GraphNode;
-use Facebook\GraphNode\GraphEdge;
 use Facebook\Tests\Fixtures\MyFooGraphNode;
 use Facebook\Tests\Fixtures\MyFooSubClassGraphNode;
-use Facebook\GraphNode\GraphAlbum;
 use PHPUnit\Framework\TestCase;
 
 class GraphNodeFactoryTest extends TestCase
@@ -152,10 +153,10 @@ class GraphNodeFactoryTest extends TestCase
     public function testAnUnknownGraphNodeWillBeCastAsAGenericGraphNode()
     {
         $data = json_encode([
-            'id' => '123',
-            'name' => 'Foo Name',
+            'id'             => '123',
+            'name'           => 'Foo Name',
             'unknown_object' => [
-                'id' => '1337',
+                'id'   => '1337',
                 'name' => 'Should be generic!',
             ],
         ]);
@@ -176,18 +177,18 @@ class GraphNodeFactoryTest extends TestCase
         $data = json_encode([
             'data' => [
                 [
-                    'id' => '123',
+                    'id'   => '123',
                     'name' => 'Foo McBar',
                     'link' => 'http://facebook/foo',
                 ],
                 [
-                    'id' => '1337',
+                    'id'   => '1337',
                     'name' => 'Bar McBaz',
                     'link' => 'http://facebook/bar',
                 ],
             ],
             'paging' => [
-                'next' => 'http://facebook/next',
+                'next'     => 'http://facebook/next',
                 'previous' => 'http://facebook/prev',
             ],
         ]);
@@ -199,12 +200,12 @@ class GraphNodeFactoryTest extends TestCase
 
         $this->assertInstanceOf(GraphEdge::class, $graphEdge);
         $this->assertEquals([
-            'id' => '123',
+            'id'   => '123',
             'name' => 'Foo McBar',
             'link' => 'http://facebook/foo',
         ], $graphData[0]);
         $this->assertEquals([
-            'id' => '1337',
+            'id'   => '1337',
             'name' => 'Bar McBaz',
             'link' => 'http://facebook/bar',
         ], $graphData[1]);
@@ -213,7 +214,7 @@ class GraphNodeFactoryTest extends TestCase
     public function testAGraphNodeWillBeCastAsAGraphNode()
     {
         $data = json_encode([
-            'id' => '123',
+            'id'   => '123',
             'name' => 'Foo McBar',
             'link' => 'http://facebook/foo',
         ]);
@@ -225,7 +226,7 @@ class GraphNodeFactoryTest extends TestCase
 
         $this->assertInstanceOf(GraphNode::class, $graphNode);
         $this->assertEquals([
-            'id' => '123',
+            'id'   => '123',
             'name' => 'Foo McBar',
             'link' => 'http://facebook/foo',
         ], $graphData);
@@ -235,7 +236,7 @@ class GraphNodeFactoryTest extends TestCase
     {
         $data = json_encode([
             'data' => [
-                'id' => '123',
+                'id'   => '123',
                 'name' => 'Foo McBar',
                 'link' => 'http://facebook/foo',
             ],
@@ -249,7 +250,7 @@ class GraphNodeFactoryTest extends TestCase
 
         $this->assertInstanceOf(GraphNode::class, $graphNode);
         $this->assertEquals([
-            'id' => '123',
+            'id'   => '123',
             'name' => 'Foo McBar',
             'link' => 'http://facebook/foo',
         ], $graphData);
@@ -258,81 +259,81 @@ class GraphNodeFactoryTest extends TestCase
     public function testAGraphEdgeWillBeCastRecursively()
     {
         $someUser = [
-            'id' => '123',
+            'id'   => '123',
             'name' => 'Foo McBar',
         ];
         $likesCollection = [
             'data' => [
                 [
-                    'id' => '1',
-                    'name' => 'Sammy Kaye Powers',
+                    'id'          => '1',
+                    'name'        => 'Sammy Kaye Powers',
                     'is_friendly' => true,
                 ],
                 [
-                    'id' => '2',
-                    'name' => 'Yassine Guedidi',
+                    'id'          => '2',
+                    'name'        => 'Yassine Guedidi',
                     'is_friendly' => true,
                 ],
                 [
-                    'id' => '3',
-                    'name' => 'Fosco Marotto',
+                    'id'          => '3',
+                    'name'        => 'Fosco Marotto',
                     'is_friendly' => true,
                 ],
                 [
-                    'id' => '4',
-                    'name' => 'Foo McUnfriendly',
+                    'id'          => '4',
+                    'name'        => 'Foo McUnfriendly',
                     'is_friendly' => false,
                 ],
             ],
             'paging' => [
-                'next' => 'http://facebook/next_likes',
+                'next'     => 'http://facebook/next_likes',
                 'previous' => 'http://facebook/prev_likes',
             ],
         ];
         $commentsCollection = [
             'data' => [
                 [
-                    'id' => '42_1',
-                    'from' => $someUser,
-                    'message' => 'Foo comment.',
+                    'id'           => '42_1',
+                    'from'         => $someUser,
+                    'message'      => 'Foo comment.',
                     'created_time' => '2014-07-15T03:54:34+0000',
-                    'likes' => $likesCollection,
+                    'likes'        => $likesCollection,
                 ],
                 [
-                    'id' => '42_2',
-                    'from' => $someUser,
-                    'message' => 'Bar comment.',
+                    'id'           => '42_2',
+                    'from'         => $someUser,
+                    'message'      => 'Bar comment.',
                     'created_time' => '2014-07-15T04:11:24+0000',
-                    'likes' => $likesCollection,
+                    'likes'        => $likesCollection,
                 ],
             ],
             'paging' => [
-                'next' => 'http://facebook/next_comments',
+                'next'     => 'http://facebook/next_comments',
                 'previous' => 'http://facebook/prev_comments',
             ],
         ];
         $dataFromGraph = [
             'data' => [
                 [
-                    'id' => '1337_1',
-                    'from' => $someUser,
-                    'story' => 'Some great foo story.',
-                    'likes' => $likesCollection,
+                    'id'       => '1337_1',
+                    'from'     => $someUser,
+                    'story'    => 'Some great foo story.',
+                    'likes'    => $likesCollection,
                     'comments' => $commentsCollection,
                 ],
                 [
-                    'id' => '1337_2',
+                    'id'   => '1337_2',
                     'from' => $someUser,
-                    'to' => [
+                    'to'   => [
                         'data' => [$someUser],
                     ],
-                    'message' => 'Some great bar message.',
-                    'likes' => $likesCollection,
+                    'message'  => 'Some great bar message.',
+                    'likes'    => $likesCollection,
                     'comments' => $commentsCollection,
                 ],
             ],
             'paging' => [
-                'next' => 'http://facebook/next',
+                'next'     => 'http://facebook/next',
                 'previous' => 'http://facebook/prev',
             ],
         ];
@@ -366,13 +367,13 @@ class GraphNodeFactoryTest extends TestCase
         $likesList = [
             'data' => [
                 [
-                    'id' => '1',
+                    'id'   => '1',
                     'name' => 'Sammy Kaye Powers',
                 ],
             ],
             'paging' => [
                 'cursors' => [
-                    'after' => 'like_after_cursor',
+                    'after'  => 'like_after_cursor',
                     'before' => 'like_before_cursor',
                 ],
             ],
@@ -381,14 +382,14 @@ class GraphNodeFactoryTest extends TestCase
         $photosList = [
             'data' => [
                 [
-                    'id' => '777',
-                    'name' => 'Foo Photo',
+                    'id'    => '777',
+                    'name'  => 'Foo Photo',
                     'likes' => $likesList,
                 ],
             ],
             'paging' => [
                 'cursors' => [
-                    'after' => 'photo_after_cursor',
+                    'after'  => 'photo_after_cursor',
                     'before' => 'photo_before_cursor',
                 ],
             ],
@@ -397,20 +398,20 @@ class GraphNodeFactoryTest extends TestCase
         $data = json_encode([
             'data' => [
                 [
-                    'id' => '111',
-                    'name' => 'Foo McBar',
-                    'likes' => $likesList,
+                    'id'     => '111',
+                    'name'   => 'Foo McBar',
+                    'likes'  => $likesList,
                     'photos' => $photosList,
                 ],
                 [
-                    'id' => '222',
-                    'name' => 'Bar McBaz',
-                    'likes' => $likesList,
+                    'id'     => '222',
+                    'name'   => 'Bar McBaz',
+                    'likes'  => $likesList,
                     'photos' => $photosList,
                 ],
             ],
             'paging' => [
-                'next' => 'http://facebook/next',
+                'next'     => 'http://facebook/next',
                 'previous' => 'http://facebook/prev',
             ],
         ]);

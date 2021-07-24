@@ -20,12 +20,13 @@
  * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
  * DEALINGS IN THE SOFTWARE.
  */
+
 namespace Facebook\Tests;
 
 use Facebook\Application;
-use Facebook\Request;
 use Facebook\FileUpload\File;
 use Facebook\FileUpload\Video;
+use Facebook\Request;
 use PHPUnit\Framework\TestCase;
 
 class RequestTest extends TestCase
@@ -89,8 +90,8 @@ class RequestTest extends TestCase
         $params = $request->getParams();
 
         $this->assertEquals([
-            'foo' => 'bar',
-            'access_token' => 'foo_token',
+            'foo'             => 'bar',
+            'access_token'    => 'foo_token',
             'appsecret_proof' => 'df4256903ba4e23636cc142117aa632133d75c642bd2a68955be1443bd14deb9',
         ], $params);
     }
@@ -120,7 +121,7 @@ class RequestTest extends TestCase
 
         $getUrl = $getRequest->getUrl();
         $expectedParams = 'foo=bar&access_token=foo_token&appsecret_proof=df4256903ba4e23636cc142117aa632133d75c642bd2a68955be1443bd14deb9';
-        $expectedUrl = '/foo?' . $expectedParams;
+        $expectedUrl = '/foo?'.$expectedParams;
 
         $this->assertEquals($expectedUrl, $getUrl);
 
@@ -142,33 +143,33 @@ class RequestTest extends TestCase
             $method = 'GET',
             $endpoint = '/foo',
             $params = [
-                'access_token' => 'foo_token',
+                'access_token'    => 'foo_token',
                 'appsecret_proof' => 'bar_app_secret',
-                'bar' => 'baz',
+                'bar'             => 'baz',
             ]
         );
 
         $url = $request->getUrl();
 
         $expectedParams = 'bar=baz&access_token=foo_token&appsecret_proof=df4256903ba4e23636cc142117aa632133d75c642bd2a68955be1443bd14deb9';
-        $expectedUrl = '/foo?' . $expectedParams;
+        $expectedUrl = '/foo?'.$expectedParams;
         $this->assertEquals($expectedUrl, $url);
 
         $params = $request->getParams();
 
         $expectedParams = [
-            'access_token' => 'foo_token',
+            'access_token'    => 'foo_token',
             'appsecret_proof' => 'df4256903ba4e23636cc142117aa632133d75c642bd2a68955be1443bd14deb9',
-            'bar' => 'baz',
+            'bar'             => 'baz',
         ];
         $this->assertEquals($expectedParams, $params);
     }
 
     public function testAFileCanBeAddedToParams()
     {
-        $myFile = new File(__DIR__ . '/foo.txt');
+        $myFile = new File(__DIR__.'/foo.txt');
         $params = [
-            'name' => 'Foo Bar',
+            'name'   => 'Foo Bar',
             'source' => $myFile,
         ];
         $app = new Application('123', 'foo_secret');
@@ -184,9 +185,9 @@ class RequestTest extends TestCase
 
     public function testAVideoCanBeAddedToParams()
     {
-        $myFile = new Video(__DIR__ . '/foo.txt');
+        $myFile = new Video(__DIR__.'/foo.txt');
         $params = [
-            'name' => 'Foo Bar',
+            'name'   => 'Foo Bar',
             'source' => $myFile,
         ];
         $app = new Application('123', 'foo_secret');

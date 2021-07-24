@@ -20,29 +20,27 @@
  * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
  * DEALINGS IN THE SOFTWARE.
  */
+
 namespace Facebook;
 
 use Facebook\Authentication\AccessToken;
 use Facebook\Authentication\OAuth2Client;
+use Facebook\Exception\SDKException;
 use Facebook\FileUpload\File;
 use Facebook\FileUpload\ResumableUploader;
 use Facebook\FileUpload\TransferChunk;
 use Facebook\FileUpload\Video;
 use Facebook\GraphNode\GraphEdge;
-use Facebook\Url\UrlDetectionInterface;
-use Facebook\Url\UrlDetectionHandler;
-use Facebook\PersistentData\PersistentDataFactory;
-use Facebook\PersistentData\PersistentDataInterface;
 use Facebook\Helper\CanvasHelper;
 use Facebook\Helper\JavaScriptHelper;
 use Facebook\Helper\PageTabHelper;
 use Facebook\Helper\RedirectLoginHelper;
-use Facebook\Exception\SDKException;
+use Facebook\PersistentData\PersistentDataFactory;
+use Facebook\PersistentData\PersistentDataInterface;
+use Facebook\Url\UrlDetectionHandler;
+use Facebook\Url\UrlDetectionInterface;
 use Http\Client\HttpClient;
 
-/**
- * @package Facebook
- */
 class Facebook
 {
     /**
@@ -110,20 +108,20 @@ class Facebook
     public function __construct(array $config = [])
     {
         $config = array_merge([
-            'app_id' => getenv(static::APP_ID_ENV_NAME),
-            'app_secret' => getenv(static::APP_SECRET_ENV_NAME),
-            'default_graph_version' => null,
-            'enable_beta_mode' => false,
-            'http_client' => null,
+            'app_id'                  => getenv(static::APP_ID_ENV_NAME),
+            'app_secret'              => getenv(static::APP_SECRET_ENV_NAME),
+            'default_graph_version'   => null,
+            'enable_beta_mode'        => false,
+            'http_client'             => null,
             'persistent_data_handler' => null,
-            'url_detection_handler' => null,
+            'url_detection_handler'   => null,
         ], $config);
 
         if (!$config['app_id']) {
-            throw new SDKException('Required "app_id" key not supplied in config and could not find fallback environment variable "' . static::APP_ID_ENV_NAME . '"');
+            throw new SDKException('Required "app_id" key not supplied in config and could not find fallback environment variable "'.static::APP_ID_ENV_NAME.'"');
         }
         if (!$config['app_secret']) {
-            throw new SDKException('Required "app_secret" key not supplied in config and could not find fallback environment variable "' . static::APP_SECRET_ENV_NAME . '"');
+            throw new SDKException('Required "app_secret" key not supplied in config and could not find fallback environment variable "'.static::APP_SECRET_ENV_NAME.'"');
         }
         if ($config['http_client'] !== null && !$config['http_client'] instanceof HttpClient) {
             throw new \InvalidArgumentException('Required "http_client" key to be null or an instance of \Http\Client\HttpClient');
@@ -588,8 +586,8 @@ class Facebook
         } while (!$chunk->isLastChunk());
 
         return [
-          'video_id' => $chunk->getVideoId(),
-          'success' => $uploader->finish($endpoint, $chunk->getUploadSessionId(), $metadata),
+            'video_id' => $chunk->getVideoId(),
+            'success'  => $uploader->finish($endpoint, $chunk->getUploadSessionId(), $metadata),
         ];
     }
 

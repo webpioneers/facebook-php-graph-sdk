@@ -20,12 +20,13 @@
  * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
  * DEALINGS IN THE SOFTWARE.
  */
+
 namespace Facebook\Tests\GraphNode;
 
-use Facebook\Response;
-use Facebook\GraphNode\GraphNodeFactory;
-use Facebook\GraphNode\GraphLocation;
 use Facebook\GraphNode\GraphCoverPhoto;
+use Facebook\GraphNode\GraphLocation;
+use Facebook\GraphNode\GraphNodeFactory;
+use Facebook\Response;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Prophecy\ObjectProphecy;
 
@@ -44,7 +45,7 @@ class GraphGroupTest extends TestCase
     public function testCoverGetsCastAsGraphCoverPhoto()
     {
         $dataFromGraph = [
-            'cover' => ['id' => '1337']
+            'cover' => ['id' => '1337'],
         ];
 
         $this->responseMock->shouldReceive('getDecodedBody')->andReturn($dataFromGraph);
@@ -58,7 +59,7 @@ class GraphGroupTest extends TestCase
     public function testVenueGetsCastAsGraphLocation()
     {
         $dataFromGraph = [
-            'venue' => ['id' => '1337']
+            'venue' => ['id' => '1337'],
         ];
 
         $this->responseMock->shouldReceive('getDecodedBody')->andReturn($dataFromGraph);

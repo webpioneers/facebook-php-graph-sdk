@@ -20,11 +20,12 @@
  * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
  * DEALINGS IN THE SOFTWARE.
  */
+
 namespace Facebook\Tests\Helper;
 
-use Facebook\Facebook;
 use Facebook\Application;
 use Facebook\Client;
+use Facebook\Facebook;
 use Facebook\Helper\RedirectLoginHelper;
 use Facebook\PersistentData\InMemoryPersistentDataHandler;
 use Facebook\Tests\Fixtures\FooRedirectLoginOAuth2Client;
@@ -62,14 +63,14 @@ class RedirectLoginHelperTest extends TestCase
         $this->assertStringStartsWith($expectedUrl, $loginUrl, 'Unexpected base login URL returned from getLoginUrl().');
 
         $params = [
-            'client_id' => '123',
+            'client_id'    => '123',
             'redirect_uri' => self::REDIRECT_URL,
-            'state' => $this->persistentDataHandler->get('state'),
-            'sdk' => 'php-sdk-' . Facebook::VERSION,
-            'scope' => implode(',', $scope),
+            'state'        => $this->persistentDataHandler->get('state'),
+            'sdk'          => 'php-sdk-'.Facebook::VERSION,
+            'scope'        => implode(',', $scope),
         ];
         foreach ($params as $key => $value) {
-            $this->assertStringContainsStringIgnoringCase($key . '=' . urlencode($value), $loginUrl);
+            $this->assertStringContainsStringIgnoringCase($key.'='.urlencode($value), $loginUrl);
         }
     }
 
@@ -80,11 +81,11 @@ class RedirectLoginHelperTest extends TestCase
         $this->assertStringStartsWith($expectedUrl, $logoutUrl, 'Unexpected base logout URL returned from getLogoutUrl().');
 
         $params = [
-            'next' => self::REDIRECT_URL,
+            'next'         => self::REDIRECT_URL,
             'access_token' => 'foo_token',
         ];
         foreach ($params as $key => $value) {
-            $this->assertStringContainsStringIgnoringCase($key . '=' . urlencode($value), $logoutUrl);
+            $this->assertStringContainsStringIgnoringCase($key.'='.urlencode($value), $logoutUrl);
         }
     }
 
@@ -96,6 +97,6 @@ class RedirectLoginHelperTest extends TestCase
 
         $accessToken = $this->redirectLoginHelper->getAccessToken(self::REDIRECT_URL);
 
-        $this->assertEquals('foo_token_from_code|foo_code|' . self::REDIRECT_URL, (string)$accessToken);
+        $this->assertEquals('foo_token_from_code|foo_code|'.self::REDIRECT_URL, (string) $accessToken);
     }
 }

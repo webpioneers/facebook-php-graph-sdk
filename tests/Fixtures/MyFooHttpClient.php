@@ -20,6 +20,7 @@
  * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
  * DEALINGS IN THE SOFTWARE.
  */
+
 namespace Facebook\Tests\Fixtures;
 
 use GuzzleHttp\Psr7\Response;
@@ -32,7 +33,7 @@ class MyFooHttpClient implements HttpClient
     {
         return new Response(
             200,
-            ['Date'=>'Mon, 19 May 2014 18:37:17 GMT'],
+            ['Date'=> 'Mon, 19 May 2014 18:37:17 GMT'],
             '{"data":[{"id":"123","name":"Foo"},{"id":"1337","name":"Bar"}]}'
         );
     }

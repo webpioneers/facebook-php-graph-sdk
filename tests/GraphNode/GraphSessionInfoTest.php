@@ -20,6 +20,7 @@
  * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
  * DEALINGS IN THE SOFTWARE.
  */
+
 namespace Facebook\Tests\GraphNode;
 
 use Facebook\GraphNode\GraphNodeFactory;
@@ -43,7 +44,7 @@ class GraphSessionInfoTest extends TestCase
     {
         $dataFromGraph = [
             'expires_at' => 123,
-            'issued_at' => 1337,
+            'issued_at'  => 1337,
         ];
 
         $this->responseMock->shouldReceive('getDecodedBody')->andReturn($dataFromGraph);

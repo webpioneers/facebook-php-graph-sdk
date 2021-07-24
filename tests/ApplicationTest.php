@@ -20,6 +20,7 @@
  * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
  * DEALINGS IN THE SOFTWARE.
  */
+
 namespace Facebook\Tests;
 
 use Facebook\Application;
@@ -53,7 +54,7 @@ class ApplicationTest extends TestCase
         $accessToken = $this->app->getAccessToken();
 
         $this->assertInstanceOf(AccessToken::class, $accessToken);
-        $this->assertEquals('id|secret', (string)$accessToken);
+        $this->assertEquals('id|secret', (string) $accessToken);
     }
 
     public function testSerialization()
@@ -69,12 +70,12 @@ class ApplicationTest extends TestCase
     {
         $this->expectException(\Facebook\Exception\SDKException::class);
 
-        new Application(PHP_INT_MAX + 1, "foo");
+        new Application(PHP_INT_MAX + 1, 'foo');
     }
 
     public function testUnserializedIdsWillBeString()
     {
-        $newApp = unserialize(serialize(new Application(1, "foo")));
+        $newApp = unserialize(serialize(new Application(1, 'foo')));
 
         $this->assertSame('1', $newApp->getId());
     }

@@ -20,10 +20,11 @@
  * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
  * DEALINGS IN THE SOFTWARE.
  */
+
 namespace Facebook\Tests\GraphNode;
 
-use Facebook\GraphNode\GraphNodeFactory;
 use Facebook\GraphNode\GraphLocation;
+use Facebook\GraphNode\GraphNodeFactory;
 use Facebook\GraphNode\GraphPage;
 use Facebook\Response;
 use PHPUnit\Framework\TestCase;
@@ -44,14 +45,14 @@ class GraphPageTest extends TestCase
     public function testPagePropertiesReturnGraphPageObjects()
     {
         $dataFromGraph = [
-            'id' => '123',
-            'name' => 'Foo Page',
+            'id'        => '123',
+            'name'      => 'Foo Page',
             'best_page' => [
-                'id' => '1',
+                'id'   => '1',
                 'name' => 'Bar Page',
             ],
             'global_brand_parent_page' => [
-                'id' => '2',
+                'id'   => '2',
                 'name' => 'Faz Page',
             ],
         ];
@@ -70,14 +71,14 @@ class GraphPageTest extends TestCase
     public function testLocationPropertyWillGetCastAsGraphLocationObject()
     {
         $dataFromGraph = [
-            'id' => '123',
-            'name' => 'Foo Page',
+            'id'       => '123',
+            'name'     => 'Foo Page',
             'location' => [
-                'city' => 'Washington',
-                'country' => 'United States',
-                'latitude' => 38.881634205431,
+                'city'      => 'Washington',
+                'country'   => 'United States',
+                'latitude'  => 38.881634205431,
                 'longitude' => -77.029121075722,
-                'state' => 'DC',
+                'state'     => 'DC',
             ],
         ];
 

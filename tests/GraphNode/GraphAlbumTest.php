@@ -20,6 +20,7 @@
  * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
  * DEALINGS IN THE SOFTWARE.
  */
+
 namespace Facebook\Tests\GraphNode;
 
 use Facebook\GraphNode\GraphNodeFactory;
@@ -31,7 +32,6 @@ use Prophecy\Prophecy\ObjectProphecy;
 
 class GraphAlbumTest extends TestCase
 {
-
     /**
      * @var ObjectProphecy|Response
      */
@@ -47,8 +47,8 @@ class GraphAlbumTest extends TestCase
         $dataFromGraph = [
             'created_time' => '2014-07-15T03:54:34+0000',
             'updated_time' => '2014-07-12T01:24:09+0000',
-            'id' => '123',
-            'name' => 'Bar',
+            'id'           => '123',
+            'name'         => 'Bar',
         ];
 
         $this->responseMock->shouldReceive('getDecodedBody')->andReturn($dataFromGraph);
@@ -65,9 +65,9 @@ class GraphAlbumTest extends TestCase
     public function testFromGetsCastAsGraphUser()
     {
         $dataFromGraph = [
-            'id' => '123',
+            'id'   => '123',
             'from' => [
-                'id' => '1337',
+                'id'   => '1337',
                 'name' => 'Foo McBar',
             ],
         ];
@@ -84,12 +84,12 @@ class GraphAlbumTest extends TestCase
     public function testPlacePropertyWillGetCastAsGraphPageObject()
     {
         $dataFromGraph = [
-            'id' => '123',
-            'name' => 'Foo Album',
+            'id'    => '123',
+            'name'  => 'Foo Album',
             'place' => [
-                'id' => '1',
+                'id'   => '1',
                 'name' => 'For Bar Place',
-            ]
+            ],
         ];
 
         $this->responseMock->shouldReceive('getDecodedBody')->andReturn($dataFromGraph);

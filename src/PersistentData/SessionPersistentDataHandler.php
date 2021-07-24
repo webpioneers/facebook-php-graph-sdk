@@ -20,13 +20,11 @@
  * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
  * DEALINGS IN THE SOFTWARE.
  */
+
 namespace Facebook\PersistentData;
 
 use Facebook\Exception\SDKException;
 
-/**
- * @package Facebook
- */
 class SessionPersistentDataHandler implements PersistentDataInterface
 {
     /**
@@ -56,8 +54,8 @@ class SessionPersistentDataHandler implements PersistentDataInterface
      */
     public function get($key)
     {
-        if (isset($_SESSION[$this->sessionPrefix . $key])) {
-            return $_SESSION[$this->sessionPrefix . $key];
+        if (isset($_SESSION[$this->sessionPrefix.$key])) {
+            return $_SESSION[$this->sessionPrefix.$key];
         }
 
         return null;
@@ -68,6 +66,6 @@ class SessionPersistentDataHandler implements PersistentDataInterface
      */
     public function set($key, $value)
     {
-        $_SESSION[$this->sessionPrefix . $key] = $value;
+        $_SESSION[$this->sessionPrefix.$key] = $value;
     }
 }

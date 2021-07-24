@@ -20,19 +20,17 @@
  * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
  * DEALINGS IN THE SOFTWARE.
  */
+
 namespace Facebook\FileUpload;
 
+use Facebook\Application;
 use Facebook\Authentication\AccessToken;
+use Facebook\Client;
 use Facebook\Exception\ResponseException;
 use Facebook\Exception\ResumableUploadException;
 use Facebook\Exception\SDKException;
-use Facebook\Application;
-use Facebook\Client;
 use Facebook\Request;
 
-/**
- * @package Facebook
- */
 class ResumableUploader
 {
     /**
@@ -83,7 +81,7 @@ class ResumableUploader
     {
         $params = [
             'upload_phase' => 'start',
-            'file_size' => $file->getSize(),
+            'file_size'    => $file->getSize(),
         ];
         $response = $this->sendUploadRequest($endpoint, $params);
 
@@ -104,10 +102,10 @@ class ResumableUploader
     public function transfer($endpoint, TransferChunk $chunk, $allowToThrow = false)
     {
         $params = [
-            'upload_phase' => 'transfer',
+            'upload_phase'      => 'transfer',
             'upload_session_id' => $chunk->getUploadSessionId(),
-            'start_offset' => $chunk->getStartOffset(),
-            'video_file_chunk' => $chunk->getPartialFile(),
+            'start_offset'      => $chunk->getStartOffset(),
+            'video_file_chunk'  => $chunk->getPartialFile(),
         ];
 
         try {
@@ -139,7 +137,7 @@ class ResumableUploader
     public function finish($endpoint, $uploadSessionId, $metadata = [])
     {
         $params = array_merge($metadata, [
-            'upload_phase' => 'finish',
+            'upload_phase'      => 'finish',
             'upload_session_id' => $uploadSessionId,
         ]);
         $response = $this->sendUploadRequest($endpoint, $params);

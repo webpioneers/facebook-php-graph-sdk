@@ -20,11 +20,9 @@
  * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
  * DEALINGS IN THE SOFTWARE.
  */
+
 namespace Facebook\GraphNode;
 
-/**
- * @package Facebook
- */
 class GraphCoverPhoto extends GraphNode
 {
     /**
@@ -36,7 +34,7 @@ class GraphCoverPhoto extends GraphNode
     {
         return $this->getField('id');
     }
-    
+
     /**
      * Returns the source of cover if it exists.
      *

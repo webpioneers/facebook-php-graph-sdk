@@ -20,23 +20,23 @@
  * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
  * DEALINGS IN THE SOFTWARE.
  */
+
 namespace Facebook\Tests\Exception;
 
 use Facebook\Application;
-use Facebook\Request;
-use Facebook\Response;
-use Facebook\Exception\ResponseException;
 use Facebook\Exception\AuthenticationException;
-use Facebook\Exception\ServerException;
-use Facebook\Exception\ThrottleException;
 use Facebook\Exception\AuthorizationException;
 use Facebook\Exception\ClientException;
 use Facebook\Exception\OtherException;
+use Facebook\Exception\ResponseException;
+use Facebook\Exception\ServerException;
+use Facebook\Exception\ThrottleException;
+use Facebook\Request;
+use Facebook\Response;
 use PHPUnit\Framework\TestCase;
 
 class ResponseExceptionTest extends TestCase
 {
-
     /**
      * @var Request
      */
@@ -51,10 +51,10 @@ class ResponseExceptionTest extends TestCase
     {
         $params = [
             'error' => [
-                'code' => 100,
-                'message' => 'errmsg',
+                'code'          => 100,
+                'message'       => 'errmsg',
                 'error_subcode' => 0,
-                'type' => 'exception'
+                'type'          => 'exception',
             ],
         ];
 
@@ -117,10 +117,10 @@ class ResponseExceptionTest extends TestCase
     {
         $params = [
             'error' => [
-                'code' => 1,
-                'message' => 'errmsg',
+                'code'          => 1,
+                'message'       => 'errmsg',
                 'error_subcode' => 0,
-                'type' => 'exception'
+                'type'          => 'exception',
             ],
         ];
 
@@ -145,10 +145,10 @@ class ResponseExceptionTest extends TestCase
     {
         $params = [
             'error' => [
-                'code' => 4,
-                'message' => 'errmsg',
+                'code'          => 4,
+                'message'       => 'errmsg',
                 'error_subcode' => 0,
-                'type' => 'exception'
+                'type'          => 'exception',
             ],
         ];
         $response = new Response($this->request, json_encode($params), 401);
@@ -178,10 +178,10 @@ class ResponseExceptionTest extends TestCase
     {
         $params = [
             'error' => [
-                'code' => 230,
-                'message' => 'errmsg',
+                'code'          => 230,
+                'message'       => 'errmsg',
                 'error_subcode' => 459,
-                'type' => 'exception'
+                'type'          => 'exception',
             ],
         ];
         $response = new Response($this->request, json_encode($params), 401);
@@ -205,10 +205,10 @@ class ResponseExceptionTest extends TestCase
     {
         $params = [
             'error' => [
-                'code' => 10,
-                'message' => 'errmsg',
+                'code'          => 10,
+                'message'       => 'errmsg',
                 'error_subcode' => 0,
-                'type' => 'exception'
+                'type'          => 'exception',
             ],
         ];
         $response = new Response($this->request, json_encode($params), 401);
@@ -244,10 +244,10 @@ class ResponseExceptionTest extends TestCase
     {
         $params = [
             'error' => [
-                'code' => 506,
-                'message' => 'errmsg',
+                'code'          => 506,
+                'message'       => 'errmsg',
                 'error_subcode' => 0,
-                'type' => 'exception'
+                'type'          => 'exception',
             ],
         ];
         $response = new Response($this->request, json_encode($params), 401);
@@ -265,10 +265,10 @@ class ResponseExceptionTest extends TestCase
     {
         $params = [
             'error' => [
-                'code' => 42,
-                'message' => 'ship love',
+                'code'          => 42,
+                'message'       => 'ship love',
                 'error_subcode' => 0,
-                'type' => 'feature'
+                'type'          => 'feature',
             ],
         ];
         $response = new Response($this->request, json_encode($params), 200);

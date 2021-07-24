@@ -20,15 +20,13 @@
  * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
  * DEALINGS IN THE SOFTWARE.
  */
+
 namespace Facebook\GraphNode;
 
+use Facebook\Exception\SDKException;
 use Facebook\Request;
 use Facebook\Url\UrlManipulator;
-use Facebook\Exception\SDKException;
 
-/**
- * @package Facebook
- */
 class GraphEdge implements \ArrayAccess, \Countable, \IteratorAggregate
 {
     /**

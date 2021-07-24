@@ -20,20 +20,19 @@
  * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
  * DEALINGS IN THE SOFTWARE.
  */
+
 namespace Facebook;
 
 use Facebook\Authentication\AccessToken;
-use Facebook\Url\UrlManipulator;
+use Facebook\Exception\SDKException;
 use Facebook\FileUpload\File;
 use Facebook\FileUpload\Video;
 use Facebook\Http\RequestBodyMultipart;
 use Facebook\Http\RequestBodyUrlEncoded;
-use Facebook\Exception\SDKException;
+use Facebook\Url\UrlManipulator;
 
 /**
  * Class Request.
- *
- * @package Facebook
  */
 class Request
 {
@@ -511,7 +510,7 @@ class Request
         $graphVersion = UrlManipulator::forceSlashPrefix($this->graphVersion);
         $endpoint = UrlManipulator::forceSlashPrefix($this->getEndpoint());
 
-        $url = $graphVersion . $endpoint;
+        $url = $graphVersion.$endpoint;
 
         if ($this->getMethod() !== 'POST') {
             $params = $this->getParams();
@@ -529,7 +528,7 @@ class Request
     public static function getDefaultHeaders()
     {
         return [
-            'User-Agent' => 'fb-php-' . Facebook::VERSION,
+            'User-Agent'      => 'fb-php-'.Facebook::VERSION,
             'Accept-Encoding' => '*',
         ];
     }

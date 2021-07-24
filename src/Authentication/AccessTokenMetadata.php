@@ -20,6 +20,7 @@
  * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
  * DEALINGS IN THE SOFTWARE.
  */
+
 namespace Facebook\Authentication;
 
 use Facebook\Exception\SDKException;
@@ -27,7 +28,6 @@ use Facebook\Exception\SDKException;
 /**
  * Represents metadata from an access token.
  *
- * @package Facebook
  *
  * @see     https://developers.facebook.com/docs/graph-api/reference/debug_token
  */

@@ -20,24 +20,24 @@
  * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
  * DEALINGS IN THE SOFTWARE.
  */
+
 namespace Facebook\Tests\GraphNode;
 
 use Facebook\Application;
-use Facebook\Request;
 use Facebook\GraphNode\GraphEdge;
 use Facebook\GraphNode\GraphNode;
+use Facebook\Request;
 use PHPUnit\Framework\TestCase;
 
 class GraphEdgeTest extends TestCase
 {
-
     /**
      * @var \Facebook\Request
      */
     protected $request;
 
     protected $pagination = [
-        'next' => 'https://graph.facebook.com/v7.12/998899/photos?pretty=0&limit=25&after=foo_after_cursor',
+        'next'     => 'https://graph.facebook.com/v7.12/998899/photos?pretty=0&limit=25&after=foo_after_cursor',
         'previous' => 'https://graph.facebook.com/v7.12/998899/photos?pretty=0&limit=25&before=foo_before_cursor',
     ];
 
@@ -159,7 +159,8 @@ class GraphEdgeTest extends TestCase
     public function testTheKeysFromTheCollectionCanBeReturned()
     {
         $graphEdge = new GraphEdge(
-            $this->request, [
+            $this->request,
+            [
                 'key1' => 'foo',
                 'key2' => 'bar',
                 'key3' => 'baz',

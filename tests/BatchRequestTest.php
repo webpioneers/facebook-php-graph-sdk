@@ -20,12 +20,13 @@
  * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
  * DEALINGS IN THE SOFTWARE.
  */
+
 namespace Facebook\Tests;
 
 use Facebook\Application;
-use Facebook\Request;
 use Facebook\BatchRequest;
 use Facebook\FileUpload\File;
+use Facebook\Request;
 use PHPUnit\Framework\TestCase;
 
 class BatchRequestTest extends TestCase
@@ -109,9 +110,9 @@ class BatchRequestTest extends TestCase
     public function testAddingRequestsWillBeFormattedInAnArrayProperly()
     {
         $requests = [
-            null => new Request(null, null, 'GET', '/foo'),
+            null                => new Request(null, null, 'GET', '/foo'),
             'my-second-request' => new Request(null, null, 'POST', '/bar', ['foo' => 'bar']),
-            'my-third-request' => new Request(null, null, 'DELETE', '/baz')
+            'my-third-request'  => new Request(null, null, 'DELETE', '/baz'),
         ];
 
         $batchRequest = $this->createBatchRequest();
@@ -140,8 +141,8 @@ class BatchRequestTest extends TestCase
     public function testAnAssociativeArrayOfRequestsCanBeAdded()
     {
         $requests = [
-            'req-one' => new Request(null, null, 'GET', '/foo'),
-            'req-two' => new Request(null, null, 'POST', '/bar', ['foo' => 'bar']),
+            'req-one'   => new Request(null, null, 'GET', '/foo'),
+            'req-two'   => new Request(null, null, 'POST', '/bar', ['foo' => 'bar']),
             'req-three' => new Request(null, null, 'DELETE', '/baz'),
         ];
 
@@ -220,29 +221,29 @@ class BatchRequestTest extends TestCase
             [
                 new Request(null, null, 'GET', '/foo', ['foo' => 'bar']),
                 [
-                    'headers' => $headers,
-                    'method' => 'GET',
+                    'headers'      => $headers,
+                    'method'       => 'GET',
                     'relative_url' => '/foo?foo=bar&access_token=foo_token&appsecret_proof=df4256903ba4e23636cc142117aa632133d75c642bd2a68955be1443bd14deb9',
-                    'name' => 'foo_name',
+                    'name'         => 'foo_name',
                 ],
             ],
             [
                 new Request(null, null, 'POST', '/bar', ['bar' => 'baz']),
                 [
-                    'headers' => $headers,
-                    'method' => 'POST',
+                    'headers'      => $headers,
+                    'method'       => 'POST',
                     'relative_url' => '/bar',
-                    'body' => 'bar=baz&access_token=foo_token&appsecret_proof=df4256903ba4e23636cc142117aa632133d75c642bd2a68955be1443bd14deb9',
-                    'name' => 'foo_name',
+                    'body'         => 'bar=baz&access_token=foo_token&appsecret_proof=df4256903ba4e23636cc142117aa632133d75c642bd2a68955be1443bd14deb9',
+                    'name'         => 'foo_name',
                 ],
             ],
             [
                 new Request(null, null, 'DELETE', '/bar'),
                 [
-                    'headers' => $headers,
-                    'method' => 'DELETE',
+                    'headers'      => $headers,
+                    'method'       => 'DELETE',
                     'relative_url' => '/bar?access_token=foo_token&appsecret_proof=df4256903ba4e23636cc142117aa632133d75c642bd2a68955be1443bd14deb9',
-                    'name' => 'foo_name',
+                    'name'         => 'foo_name',
                 ],
             ],
         ];
@@ -252,7 +253,7 @@ class BatchRequestTest extends TestCase
     {
         $request = new Request(null, null, 'POST', '/bar', [
             'message' => 'foobar',
-            'source' => new File(__DIR__ . '/foo.txt'),
+            'source'  => new File(__DIR__.'/foo.txt'),
         ]);
 
         $batchRequest = $this->createBatchRequest();
@@ -269,11 +270,11 @@ class BatchRequestTest extends TestCase
         );
 
         $this->assertEquals([
-            'headers' => $this->defaultHeaders(),
-            'method' => 'POST',
-            'relative_url' => '/bar',
-            'body' => 'message=foobar&access_token=foo_token&appsecret_proof=df4256903ba4e23636cc142117aa632133d75c642bd2a68955be1443bd14deb9',
-            'name' => 'foo_name',
+            'headers'        => $this->defaultHeaders(),
+            'method'         => 'POST',
+            'relative_url'   => '/bar',
+            'body'           => 'message=foobar&access_token=foo_token&appsecret_proof=df4256903ba4e23636cc142117aa632133d75c642bd2a68955be1443bd14deb9',
+            'name'           => 'foo_name',
             'attached_files' => $attachedFiles,
         ], $batchRequestArray);
     }
@@ -283,7 +284,7 @@ class BatchRequestTest extends TestCase
         $request = new Request(null, null, 'GET', '/bar');
         $batchRequest = $this->createBatchRequest();
         $batchRequest->add($request, [
-            'name' => 'foo_name',
+            'name'                     => 'foo_name',
             'omit_response_on_success' => false,
         ]);
 
@@ -295,10 +296,10 @@ class BatchRequestTest extends TestCase
         $batchRequestArray = $batchRequest->requestEntityToBatchArray($requests[0]['request'], $options);
 
         $this->assertEquals([
-            'headers' => $this->defaultHeaders(),
-            'method' => 'GET',
-            'relative_url' => '/bar?access_token=foo_token&appsecret_proof=df4256903ba4e23636cc142117aa632133d75c642bd2a68955be1443bd14deb9',
-            'name' => 'foo_name',
+            'headers'                  => $this->defaultHeaders(),
+            'method'                   => 'GET',
+            'relative_url'             => '/bar?access_token=foo_token&appsecret_proof=df4256903ba4e23636cc142117aa632133d75c642bd2a68955be1443bd14deb9',
+            'name'                     => 'foo_name',
             'omit_response_on_success' => false,
         ], $batchRequestArray);
     }
@@ -314,10 +315,10 @@ class BatchRequestTest extends TestCase
 
         $expectedHeaders = json_encode($this->defaultHeaders());
         $expectedBatchParams = [
-            'batch' => '[{"headers":' . $expectedHeaders . ',"method":"GET","relative_url":"\\/foo?access_token=bar_token&appsecret_proof=2ceec40b7b9fd7d38fff1767b766bcc6b1f9feb378febac4612c156e6a8354bd","name":"foo_name"},'
-                . '{"headers":' . $expectedHeaders . ',"method":"POST","relative_url":"\\/bar","body":"foo=bar&access_token=foo_token&appsecret_proof=df4256903ba4e23636cc142117aa632133d75c642bd2a68955be1443bd14deb9"}]',
+            'batch' => '[{"headers":'.$expectedHeaders.',"method":"GET","relative_url":"\\/foo?access_token=bar_token&appsecret_proof=2ceec40b7b9fd7d38fff1767b766bcc6b1f9feb378febac4612c156e6a8354bd","name":"foo_name"},'
+                .'{"headers":'.$expectedHeaders.',"method":"POST","relative_url":"\\/bar","body":"foo=bar&access_token=foo_token&appsecret_proof=df4256903ba4e23636cc142117aa632133d75c642bd2a68955be1443bd14deb9"}]',
             'include_headers' => true,
-            'access_token' => 'foo_token',
+            'access_token'    => 'foo_token',
             'appsecret_proof' => 'df4256903ba4e23636cc142117aa632133d75c642bd2a68955be1443bd14deb9',
         ];
         $this->assertEquals($expectedBatchParams, $params);
@@ -329,7 +330,7 @@ class BatchRequestTest extends TestCase
         $batchRequest->add(new Request(null, 'bar_token', 'GET', '/foo'), 'foo_name');
         $batchRequest->add(new Request(null, null, 'POST', '/me/photos', [
             'message' => 'foobar',
-            'source' => new File(__DIR__ . '/foo.txt'),
+            'source'  => new File(__DIR__.'/foo.txt'),
         ]));
         $batchRequest->prepareRequestsForBatch();
 
@@ -340,10 +341,10 @@ class BatchRequestTest extends TestCase
 
         $expectedHeaders = json_encode($this->defaultHeaders());
         $expectedBatchParams = [
-            'batch' => '[{"headers":' . $expectedHeaders . ',"method":"GET","relative_url":"\\/foo?access_token=bar_token&appsecret_proof=2ceec40b7b9fd7d38fff1767b766bcc6b1f9feb378febac4612c156e6a8354bd","name":"foo_name"},'
-                . '{"headers":' . $expectedHeaders . ',"method":"POST","relative_url":"\\/me\\/photos","body":"message=foobar&access_token=foo_token&appsecret_proof=df4256903ba4e23636cc142117aa632133d75c642bd2a68955be1443bd14deb9","attached_files":"' . $attachedFiles . '"}]',
+            'batch' => '[{"headers":'.$expectedHeaders.',"method":"GET","relative_url":"\\/foo?access_token=bar_token&appsecret_proof=2ceec40b7b9fd7d38fff1767b766bcc6b1f9feb378febac4612c156e6a8354bd","name":"foo_name"},'
+                .'{"headers":'.$expectedHeaders.',"method":"POST","relative_url":"\\/me\\/photos","body":"message=foobar&access_token=foo_token&appsecret_proof=df4256903ba4e23636cc142117aa632133d75c642bd2a68955be1443bd14deb9","attached_files":"'.$attachedFiles.'"}]',
             'include_headers' => true,
-            'access_token' => 'foo_token',
+            'access_token'    => 'foo_token',
             'appsecret_proof' => 'df4256903ba4e23636cc142117aa632133d75c642bd2a68955be1443bd14deb9',
         ];
         $this->assertEquals($expectedBatchParams, $params);
@@ -353,7 +354,7 @@ class BatchRequestTest extends TestCase
     {
         $batchRequest = $this->createBatchRequest();
         $batchRequest->add(new Request(null, null, 'GET', '/foo'), [
-            'name' => 'foo_name',
+            'name'                     => 'foo_name',
             'omit_response_on_success' => false,
         ]);
 
@@ -363,10 +364,10 @@ class BatchRequestTest extends TestCase
         $expectedHeaders = json_encode($this->defaultHeaders());
 
         $expectedBatchParams = [
-            'batch' => '[{"headers":' . $expectedHeaders . ',"method":"GET","relative_url":"\\/foo?access_token=foo_token&appsecret_proof=df4256903ba4e23636cc142117aa632133d75c642bd2a68955be1443bd14deb9",'
-                . '"name":"foo_name","omit_response_on_success":false}]',
+            'batch' => '[{"headers":'.$expectedHeaders.',"method":"GET","relative_url":"\\/foo?access_token=foo_token&appsecret_proof=df4256903ba4e23636cc142117aa632133d75c642bd2a68955be1443bd14deb9",'
+                .'"name":"foo_name","omit_response_on_success":false}]',
             'include_headers' => true,
-            'access_token' => 'foo_token',
+            'access_token'    => 'foo_token',
             'appsecret_proof' => 'df4256903ba4e23636cc142117aa632133d75c642bd2a68955be1443bd14deb9',
         ];
         $this->assertEquals($expectedBatchParams, $params);
@@ -385,7 +386,7 @@ class BatchRequestTest extends TestCase
     {
         $headers = [];
         foreach (Request::getDefaultHeaders() as $name => $value) {
-            $headers[] = $name . ': ' . $value;
+            $headers[] = $name.': '.$value;
         }
 
         return $headers;
@@ -416,10 +417,10 @@ class BatchRequestTest extends TestCase
         $expectedRequests = [];
         foreach ($requests as $name => $request) {
             $expectedRequests[] = [
-                'name' => $name,
-                'request' => $request,
+                'name'           => $name,
+                'request'        => $request,
                 'attached_files' => null,
-                'options' => [],
+                'options'        => [],
             ];
         }
         $this->assertEquals($expectedRequests, $formattedRequests);

@@ -20,14 +20,15 @@
  * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
  * DEALINGS IN THE SOFTWARE.
  */
+
 namespace Facebook\Tests\GraphNode;
 
-use Facebook\Response;
+use Facebook\GraphNode\Birthday;
 use Facebook\GraphNode\GraphNodeFactory;
+use Facebook\GraphNode\GraphPage;
 use Facebook\GraphNode\GraphPicture;
 use Facebook\GraphNode\GraphUser;
-use Facebook\GraphNode\GraphPage;
-use Facebook\GraphNode\Birthday;
+use Facebook\Response;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Prophecy\ObjectProphecy;
 
@@ -116,14 +117,14 @@ class GraphUserTest extends TestCase
     public function testPagePropertiesWillGetCastAsGraphPageObjects()
     {
         $dataFromGraph = [
-            'id' => '123',
-            'name' => 'Foo User',
+            'id'       => '123',
+            'name'     => 'Foo User',
             'hometown' => [
-                'id' => '1',
+                'id'   => '1',
                 'name' => 'Foo Place',
             ],
             'location' => [
-                'id' => '2',
+                'id'   => '2',
                 'name' => 'Bar Place',
             ],
         ];
@@ -142,10 +143,10 @@ class GraphUserTest extends TestCase
     public function testUserPropertiesWillGetCastAsGraphUserObjects()
     {
         $dataFromGraph = [
-            'id' => '123',
-            'name' => 'Foo User',
+            'id'                => '123',
+            'name'              => 'Foo User',
             'significant_other' => [
-                'id' => '1337',
+                'id'   => '1337',
                 'name' => 'Bar User',
             ],
         ];
@@ -162,13 +163,13 @@ class GraphUserTest extends TestCase
     public function testPicturePropertiesWillGetCastAsGraphPictureObjects()
     {
         $dataFromGraph = [
-            'id' => '123',
-            'name' => 'Foo User',
+            'id'      => '123',
+            'name'    => 'Foo User',
             'picture' => [
                 'is_silhouette' => true,
-                'url' => 'http://foo.bar',
-                'width' => 200,
-                'height' => 200,
+                'url'           => 'http://foo.bar',
+                'width'         => 200,
+                'height'        => 200,
             ],
         ];
 

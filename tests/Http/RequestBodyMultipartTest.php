@@ -20,10 +20,11 @@
  * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
  * DEALINGS IN THE SOFTWARE.
  */
+
 namespace Facebook\Tests\Http;
 
-use Facebook\Http\RequestBodyMultipart;
 use Facebook\FileUpload\File;
+use Facebook\Http\RequestBodyMultipart;
 use PHPUnit\Framework\TestCase;
 
 class RequestBodyMultipartTest extends TestCase
@@ -31,7 +32,7 @@ class RequestBodyMultipartTest extends TestCase
     public function testCanProperlyEncodeAnArrayOfParams()
     {
         $message = new RequestBodyMultipart([
-            'foo' => 'bar',
+            'foo'          => 'bar',
             'scawy_vawues' => '@FooBar is a real twitter handle.',
         ], [], 'foo_boundary');
         $body = $message->getBody();
@@ -47,7 +48,7 @@ class RequestBodyMultipartTest extends TestCase
 
     public function testCanProperlyEncodeFilesAndParams()
     {
-        $file = new File(__DIR__ . '/../foo.txt');
+        $file = new File(__DIR__.'/../foo.txt');
         $message = new RequestBodyMultipart([
             'foo' => 'bar',
         ], [
@@ -68,21 +69,21 @@ class RequestBodyMultipartTest extends TestCase
     public function testSupportsMultidimensionalParams()
     {
         $message = new RequestBodyMultipart([
-          'foo' => 'bar',
-          'faz' => [1,2,3],
-          'targeting' => [
-            'countries' => 'US,GB',
-            'age_min' => 13,
-          ],
-          'call_to_action' => [
-            'type' => 'LEARN_MORE',
-            'value' => [
-              'link' => 'http://example.com',
-              'sponsorship' => [
-                'image' => 'http://example.com/bar.jpg',
-              ],
+            'foo'       => 'bar',
+            'faz'       => [1, 2, 3],
+            'targeting' => [
+                'countries' => 'US,GB',
+                'age_min'   => 13,
             ],
-          ],
+            'call_to_action' => [
+                'type'  => 'LEARN_MORE',
+                'value' => [
+                    'link'        => 'http://example.com',
+                    'sponsorship' => [
+                        'image' => 'http://example.com/bar.jpg',
+                    ],
+                ],
+            ],
         ], [], 'foo_boundary');
         $body = $message->getBody();
 

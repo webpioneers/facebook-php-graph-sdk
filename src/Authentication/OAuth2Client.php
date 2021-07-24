@@ -20,19 +20,17 @@
  * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
  * DEALINGS IN THE SOFTWARE.
  */
+
 namespace Facebook\Authentication;
 
-use Facebook\Facebook;
 use Facebook\Application;
-use Facebook\Request;
-use Facebook\Response;
 use Facebook\Client;
 use Facebook\Exception\ResponseException;
 use Facebook\Exception\SDKException;
+use Facebook\Facebook;
+use Facebook\Request;
+use Facebook\Response;
 
-/**
- * @package Facebook
- */
 class OAuth2Client
 {
     /**
@@ -132,15 +130,15 @@ class OAuth2Client
     public function getAuthorizationUrl($redirectUrl, $state, array $scope = [], array $params = [], $separator = '&')
     {
         $params += [
-            'client_id' => $this->app->getId(),
-            'state' => $state,
+            'client_id'     => $this->app->getId(),
+            'state'         => $state,
             'response_type' => 'code',
-            'sdk' => 'php-sdk-' . Facebook::VERSION,
-            'redirect_uri' => $redirectUrl,
-            'scope' => implode(',', $scope)
+            'sdk'           => 'php-sdk-'.Facebook::VERSION,
+            'redirect_uri'  => $redirectUrl,
+            'scope'         => implode(',', $scope),
         ];
 
-        return static::BASE_AUTHORIZATION_URL . '/' . $this->graphVersion . '/dialog/oauth?' . http_build_query($params, null, $separator);
+        return static::BASE_AUTHORIZATION_URL.'/'.$this->graphVersion.'/dialog/oauth?'.http_build_query($params, null, $separator);
     }
 
     /**
@@ -156,7 +154,7 @@ class OAuth2Client
     public function getAccessTokenFromCode($code, $redirectUri = '')
     {
         $params = [
-            'code' => $code,
+            'code'         => $code,
             'redirect_uri' => $redirectUri,
         ];
 
@@ -176,7 +174,7 @@ class OAuth2Client
     {
         $accessToken = $accessToken instanceof AccessToken ? $accessToken->getValue() : $accessToken;
         $params = [
-            'grant_type' => 'fb_exchange_token',
+            'grant_type'        => 'fb_exchange_token',
             'fb_exchange_token' => $accessToken,
         ];
 
@@ -282,7 +280,7 @@ class OAuth2Client
     protected function getClientParams()
     {
         return [
-            'client_id' => $this->app->getId(),
+            'client_id'     => $this->app->getId(),
             'client_secret' => $this->app->getSecret(),
         ];
     }

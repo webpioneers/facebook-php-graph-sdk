@@ -20,17 +20,15 @@
  * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
  * DEALINGS IN THE SOFTWARE.
  */
+
 namespace Facebook;
 
-use ArrayIterator;
-use IteratorAggregate;
 use ArrayAccess;
+use ArrayIterator;
 use Facebook\Authentication\AccessToken;
 use Facebook\Exception\SDKException;
+use IteratorAggregate;
 
-/**
- * @package Facebook
- */
 class BatchRequest extends Request implements IteratorAggregate, ArrayAccess
 {
     /**
@@ -100,9 +98,9 @@ class BatchRequest extends Request implements IteratorAggregate, ArrayAccess
         unset($options['name']);
 
         $requestToAdd = [
-            'name' => $name,
-            'request' => $request,
-            'options' => $options,
+            'name'           => $name,
+            'request'        => $request,
+            'options'        => $options,
             'attached_files' => $attachedFiles,
         ];
 
@@ -184,7 +182,7 @@ class BatchRequest extends Request implements IteratorAggregate, ArrayAccess
         $this->validateBatchRequestCount();
 
         $params = [
-            'batch' => $this->convertRequestsToJson(),
+            'batch'           => $this->convertRequestsToJson(),
             'include_headers' => true,
         ];
         $this->setParams($params);
@@ -241,7 +239,6 @@ class BatchRequest extends Request implements IteratorAggregate, ArrayAccess
      */
     public function requestEntityToBatchArray(Request $request, $options = null, $attachedFiles = null)
     {
-
         if (null === $options) {
             $options = [];
         } elseif (!is_array($options)) {
@@ -251,12 +248,12 @@ class BatchRequest extends Request implements IteratorAggregate, ArrayAccess
         $compiledHeaders = [];
         $headers = $request->getHeaders();
         foreach ($headers as $name => $value) {
-            $compiledHeaders[] = $name . ': ' . $value;
+            $compiledHeaders[] = $name.': '.$value;
         }
 
         $batch = [
-            'headers' => $compiledHeaders,
-            'method' => $request->getMethod(),
+            'headers'      => $compiledHeaders,
+            'method'       => $request->getMethod(),
             'relative_url' => $request->getUrl(),
         ];
 

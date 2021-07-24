@@ -20,6 +20,7 @@
  * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
  * DEALINGS IN THE SOFTWARE.
  */
+
 namespace Facebook\Tests\GraphNode;
 
 use Facebook\GraphNode\GraphApplication;
@@ -30,7 +31,7 @@ class GraphAchievementTest extends AbstractGraphNode
     public function testIdIsString()
     {
         $dataFromGraph = [
-            'id' => '1337'
+            'id' => '1337',
         ];
 
         $factory = $this->makeFactoryWithData($dataFromGraph);
@@ -44,7 +45,7 @@ class GraphAchievementTest extends AbstractGraphNode
     public function testTypeIsAlwaysString()
     {
         $dataFromGraph = [
-            'id' => '1337'
+            'id' => '1337',
         ];
 
         $factory = $this->makeFactoryWithData($dataFromGraph);
@@ -58,7 +59,7 @@ class GraphAchievementTest extends AbstractGraphNode
     public function testNoFeedStoryIsBoolean()
     {
         $dataFromGraph = [
-            'no_feed_story' => (rand(0, 1) == 1)
+            'no_feed_story' => (rand(0, 1) == 1),
         ];
 
         $factory = $this->makeFactoryWithData($dataFromGraph);
@@ -72,7 +73,7 @@ class GraphAchievementTest extends AbstractGraphNode
     public function testDatesGetCastToDateTime()
     {
         $dataFromGraph = [
-            'publish_time' => '2014-07-15T03:54:34+0000'
+            'publish_time' => '2014-07-15T03:54:34+0000',
         ];
 
         $factory = $this->makeFactoryWithData($dataFromGraph);
@@ -87,9 +88,9 @@ class GraphAchievementTest extends AbstractGraphNode
     {
         $dataFromGraph = [
             'from' => [
-                'id' => '1337',
-                'name' => 'Foo McBar'
-            ]
+                'id'   => '1337',
+                'name' => 'Foo McBar',
+            ],
         ];
 
         $factory = $this->makeFactoryWithData($dataFromGraph);
@@ -104,8 +105,8 @@ class GraphAchievementTest extends AbstractGraphNode
     {
         $dataFromGraph = [
             'application' => [
-                'id' => '1337'
-            ]
+                'id' => '1337',
+            ],
         ];
 
         $factory = $this->makeFactoryWithData($dataFromGraph);

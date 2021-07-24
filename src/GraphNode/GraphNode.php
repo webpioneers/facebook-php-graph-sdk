@@ -20,11 +20,9 @@
  * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
  * DEALINGS IN THE SOFTWARE.
  */
+
 namespace Facebook\GraphNode;
 
-/**
- * @package Facebook
- */
 class GraphNode
 {
     /**
@@ -189,7 +187,7 @@ class GraphNode
             'backdated_time',
             'issued_at',
             'expires_at',
-            'publish_time'
+            'publish_time',
         ], true);
     }
 
@@ -211,11 +209,11 @@ class GraphNode
         // ...and I'm all like:
         // http://thecodinglove.com/post/95378251969/when-code-works-and-i-dont-know-why
         $crazyInsaneRegexThatSomehowDetectsIso8601 = '/^([\+-]?\d{4}(?!\d{2}\b))'
-            . '((-?)((0[1-9]|1[0-2])(\3([12]\d|0[1-9]|3[01]))?'
-            . '|W([0-4]\d|5[0-2])(-?[1-7])?|(00[1-9]|0[1-9]\d'
-            . '|[12]\d{2}|3([0-5]\d|6[1-6])))([T\s]((([01]\d|2[0-3])'
-            . '((:?)[0-5]\d)?|24\:?00)([\.,]\d+(?!:))?)?(\17[0-5]\d'
-            . '([\.,]\d+)?)?([zZ]|([\+-])([01]\d|2[0-3]):?([0-5]\d)?)?)?)?$/';
+            .'((-?)((0[1-9]|1[0-2])(\3([12]\d|0[1-9]|3[01]))?'
+            .'|W([0-4]\d|5[0-2])(-?[1-7])?|(00[1-9]|0[1-9]\d'
+            .'|[12]\d{2}|3([0-5]\d|6[1-6])))([T\s]((([01]\d|2[0-3])'
+            .'((:?)[0-5]\d)?|24\:?00)([\.,]\d+(?!:))?)?(\17[0-5]\d'
+            .'([\.,]\d+)?)?([zZ]|([\+-])([01]\d|2[0-3]):?([0-5]\d)?)?)?)?$/';
 
         return preg_match($crazyInsaneRegexThatSomehowDetectsIso8601, $string) === 1;
     }

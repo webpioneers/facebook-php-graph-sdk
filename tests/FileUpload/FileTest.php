@@ -20,6 +20,7 @@
  * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
  * DEALINGS IN THE SOFTWARE.
  */
+
 namespace Facebook\Tests\FileUpload;
 
 use Facebook\FileUpload\File;
@@ -31,7 +32,7 @@ class FileTest extends TestCase
 
     protected function setUp(): void
     {
-        $this->testFile = __DIR__ . '/../foo.txt';
+        $this->testFile = __DIR__.'/../foo.txt';
     }
 
     public function testCanOpenAndReadAndCloseAFile()

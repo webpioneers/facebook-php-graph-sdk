@@ -20,6 +20,7 @@
  * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
  * DEALINGS IN THE SOFTWARE.
  */
+
 namespace Facebook\Tests\Url;
 
 use Facebook\Url\UrlDetectionHandler;
@@ -30,7 +31,7 @@ class UrlDetectionHandlerTest extends TestCase
     public function testProperlyGeneratesUrlFromCommonScenario()
     {
         $_SERVER = [
-            'HTTP_HOST' => 'foo.bar',
+            'HTTP_HOST'   => 'foo.bar',
             'SERVER_PORT' => '80',
             'REQUEST_URI' => '/baz?foo=123',
         ];
@@ -44,7 +45,7 @@ class UrlDetectionHandlerTest extends TestCase
     public function testProperlyGeneratesSecureUrlFromCommonScenario()
     {
         $_SERVER = [
-            'HTTP_HOST' => 'foo.bar',
+            'HTTP_HOST'   => 'foo.bar',
             'SERVER_PORT' => '443',
             'REQUEST_URI' => '/baz?foo=123',
         ];
@@ -58,11 +59,11 @@ class UrlDetectionHandlerTest extends TestCase
     public function testProperlyGeneratesUrlFromProxy()
     {
         $_SERVER = [
-            'HTTP_X_FORWARDED_PORT' => '80',
+            'HTTP_X_FORWARDED_PORT'  => '80',
             'HTTP_X_FORWARDED_PROTO' => 'http',
-            'HTTP_HOST' => 'foo.bar',
-            'SERVER_PORT' => '80',
-            'REQUEST_URI' => '/baz?foo=123',
+            'HTTP_HOST'              => 'foo.bar',
+            'SERVER_PORT'            => '80',
+            'REQUEST_URI'            => '/baz?foo=123',
         ];
 
         $urlHandler = new UrlDetectionHandler();
@@ -74,11 +75,11 @@ class UrlDetectionHandlerTest extends TestCase
     public function testProperlyGeneratesSecureUrlFromProxy()
     {
         $_SERVER = [
-            'HTTP_X_FORWARDED_PORT' => '443',
+            'HTTP_X_FORWARDED_PORT'  => '443',
             'HTTP_X_FORWARDED_PROTO' => 'https',
-            'HTTP_HOST' => 'foo.bar',
-            'SERVER_PORT' => '80',
-            'REQUEST_URI' => '/baz?foo=123',
+            'HTTP_HOST'              => 'foo.bar',
+            'SERVER_PORT'            => '80',
+            'REQUEST_URI'            => '/baz?foo=123',
         ];
 
         $urlHandler = new UrlDetectionHandler();
@@ -90,7 +91,7 @@ class UrlDetectionHandlerTest extends TestCase
     public function testProperlyGeneratesUrlWithCustomPort()
     {
         $_SERVER = [
-            'HTTP_HOST' => 'foo.bar',
+            'HTTP_HOST'   => 'foo.bar',
             'SERVER_PORT' => '1337',
             'REQUEST_URI' => '/foo.php',
         ];
@@ -104,10 +105,10 @@ class UrlDetectionHandlerTest extends TestCase
     public function testProperlyGeneratesSecureUrlWithCustomPort()
     {
         $_SERVER = [
-            'HTTP_HOST' => 'foo.bar',
+            'HTTP_HOST'   => 'foo.bar',
             'SERVER_PORT' => '1337',
             'REQUEST_URI' => '/foo.php',
-            'HTTPS' => 'On',
+            'HTTPS'       => 'On',
         ];
 
         $urlHandler = new UrlDetectionHandler();
@@ -119,11 +120,11 @@ class UrlDetectionHandlerTest extends TestCase
     public function testProperlyGeneratesUrlWithCustomPortFromProxy()
     {
         $_SERVER = [
-            'HTTP_X_FORWARDED_PORT' => '8888',
+            'HTTP_X_FORWARDED_PORT'  => '8888',
             'HTTP_X_FORWARDED_PROTO' => 'http',
-            'HTTP_HOST' => 'foo.bar',
-            'SERVER_PORT' => '80',
-            'REQUEST_URI' => '/foo.php',
+            'HTTP_HOST'              => 'foo.bar',
+            'SERVER_PORT'            => '80',
+            'REQUEST_URI'            => '/foo.php',
         ];
 
         $urlHandler = new UrlDetectionHandler();

@@ -20,18 +20,18 @@
  * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
  * DEALINGS IN THE SOFTWARE.
  */
+
 namespace Facebook\Tests\Authentication;
 
-use Facebook\Facebook;
 use Facebook\Application;
-use Facebook\Authentication\OAuth2Client;
-use Facebook\Authentication\AccessTokenMetadata;
 use Facebook\Authentication\AccessToken;
+use Facebook\Authentication\AccessTokenMetadata;
+use Facebook\Authentication\OAuth2Client;
+use Facebook\Facebook;
 use PHPUnit\Framework\TestCase;
 
 class OAuth2ClientTest extends TestCase
 {
-
     /**
      * @const The foo Graph version
      */
@@ -64,8 +64,8 @@ class OAuth2ClientTest extends TestCase
         $this->assertEquals('444', $metadata->getUserId());
 
         $expectedParams = [
-            'input_token' => 'baz_token',
-            'access_token' => '123|foo_secret',
+            'input_token'     => 'baz_token',
+            'access_token'    => '123|foo_secret',
             'appsecret_proof' => 'de753c58fd58b03afca2340bbaeb4ecf987b5de4c09e39a63c944dd25efbc234',
         ];
 
@@ -83,19 +83,19 @@ class OAuth2ClientTest extends TestCase
 
         $this->assertStringContainsStringIgnoringCase('*', $authUrl);
 
-        $expectedUrl = 'https://www.facebook.com/' . static::TESTING_GRAPH_VERSION . '/dialog/oauth?';
+        $expectedUrl = 'https://www.facebook.com/'.static::TESTING_GRAPH_VERSION.'/dialog/oauth?';
         $this->assertStringStartsWith($expectedUrl, $authUrl, 'Unexpected base authorization URL returned from getAuthorizationUrl().');
 
         $params = [
-            'client_id' => '123',
+            'client_id'    => '123',
             'redirect_uri' => 'https://foo.bar',
-            'state' => 'foo_state',
-            'sdk' => 'php-sdk-' . Facebook::VERSION,
-            'scope' => implode(',', $scope),
-            'foo' => 'bar',
+            'state'        => 'foo_state',
+            'sdk'          => 'php-sdk-'.Facebook::VERSION,
+            'scope'        => implode(',', $scope),
+            'foo'          => 'bar',
         ];
         foreach ($params as $key => $value) {
-            $this->assertStringContainsStringIgnoringCase($key . '=' . urlencode($value), $authUrl);
+            $this->assertStringContainsStringIgnoringCase($key.'='.urlencode($value), $authUrl);
         }
     }
 
@@ -109,11 +109,11 @@ class OAuth2ClientTest extends TestCase
         $this->assertEquals('my_access_token', $accessToken->getValue());
 
         $expectedParams = [
-            'code' => 'bar_code',
-            'redirect_uri' => 'foo_uri',
-            'client_id' => '123',
-            'client_secret' => 'foo_secret',
-            'access_token' => '123|foo_secret',
+            'code'            => 'bar_code',
+            'redirect_uri'    => 'foo_uri',
+            'client_id'       => '123',
+            'client_secret'   => 'foo_secret',
+            'access_token'    => '123|foo_secret',
             'appsecret_proof' => 'de753c58fd58b03afca2340bbaeb4ecf987b5de4c09e39a63c944dd25efbc234',
         ];
 
@@ -133,12 +133,12 @@ class OAuth2ClientTest extends TestCase
         $this->assertEquals('my_access_token', $accessToken->getValue());
 
         $expectedParams = [
-            'grant_type' => 'fb_exchange_token',
+            'grant_type'        => 'fb_exchange_token',
             'fb_exchange_token' => 'short_token',
-            'client_id' => '123',
-            'client_secret' => 'foo_secret',
-            'access_token' => '123|foo_secret',
-            'appsecret_proof' => 'de753c58fd58b03afca2340bbaeb4ecf987b5de4c09e39a63c944dd25efbc234',
+            'client_id'         => '123',
+            'client_secret'     => 'foo_secret',
+            'access_token'      => '123|foo_secret',
+            'appsecret_proof'   => 'de753c58fd58b03afca2340bbaeb4ecf987b5de4c09e39a63c944dd25efbc234',
         ];
 
         $request = $this->oauth->getLastRequest();
@@ -154,10 +154,10 @@ class OAuth2ClientTest extends TestCase
         $this->assertEquals('my_neat_code', $code);
 
         $expectedParams = [
-            'access_token' => 'long_token',
-            'redirect_uri' => 'foo_uri',
-            'client_id' => '123',
-            'client_secret' => 'foo_secret',
+            'access_token'    => 'long_token',
+            'redirect_uri'    => 'foo_uri',
+            'client_id'       => '123',
+            'client_secret'   => 'foo_secret',
             'appsecret_proof' => '7e91300ea91be4166282611d4fc700b473466f3ea2981dafbf492fc096995bf1',
         ];
 

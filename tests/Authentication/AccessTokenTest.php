@@ -20,6 +20,7 @@
  * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
  * DEALINGS IN THE SOFTWARE.
  */
+
 namespace Facebook\Tests\Authentication;
 
 use Facebook\Authentication\AccessToken;
@@ -32,7 +33,7 @@ class AccessTokenTest extends TestCase
         $accessToken = new AccessToken('foo_token');
 
         $this->assertEquals('foo_token', $accessToken->getValue());
-        $this->assertEquals('foo_token', (string)$accessToken);
+        $this->assertEquals('foo_token', (string) $accessToken);
     }
 
     public function testAnAppSecretProofWillBeProperlyGenerated()
@@ -99,12 +100,12 @@ class AccessTokenTest extends TestCase
 
         $newAccessToken = unserialize(serialize($accessToken));
 
-        $this->assertEquals((string)$accessToken, (string)$newAccessToken);
+        $this->assertEquals((string) $accessToken, (string) $newAccessToken);
         $this->assertEquals($accessToken->getExpiresAt(), $newAccessToken->getExpiresAt());
     }
 
     private function aWeekFromNow()
     {
-        return time() + (60 * 60 * 24 * 7);//a week from now
+        return time() + (60 * 60 * 24 * 7); //a week from now
     }
 }

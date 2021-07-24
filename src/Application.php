@@ -20,6 +20,7 @@
  * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
  * DEALINGS IN THE SOFTWARE.
  */
+
 namespace Facebook;
 
 use Facebook\Authentication\AccessToken;
@@ -82,7 +83,7 @@ class Application implements \Serializable
      */
     public function getAccessToken()
     {
-        return new AccessToken($this->id . '|' . $this->secret);
+        return new AccessToken($this->id.'|'.$this->secret);
     }
 
     /**
