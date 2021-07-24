@@ -258,6 +258,7 @@ class ClientTest extends TestCase
     {
         if (!file_exists(__DIR__.'/TestCredentials.php')) {
             $this->markTestSkipped('You must create a TestCredentials.php file from TestCredentials.php.dist');
+
             return;
         }
 
