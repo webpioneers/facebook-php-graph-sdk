@@ -5,22 +5,13 @@ Starting with version 5, the Facebook PHP SDK follows [SemVer](http://semver.org
 
 ## 6.x
 
-- 6.0.0 (Sometime in 2017)
-  - Bumped minimum PHP version requirement to 5.6 (#607, #647)
-  - Made the `default_graph_version` option required (#643)
-  - Replace custom CSPRNG implementation with `paragonie/random_compat` (#644)
-  - Removed the built-in autoloader in favor of composer's autoloader (#646)
-  - Big integers in signed requests get decoded as `string` instead of `float` (#699)
-  - We use an HTTP client abstraction called HTTPlug to give the user more control over *how* to send PSR7 messages. See updated installation instructions. 
-  - Removed option `http_client_handler`
-  - Added option `http_client` which should be an object implementing `\Http\Client\HttpClient`
-  - Removed functions `FacebookClient::setHttpClientHandler()` and `FacebookClient::getHttpClientHandler()` in favor for `FacebookClient::getHttpClient()` and `FacebookClient::setHttpClient()`.
-  - Removed classes `GraphObject`, `GraphList` and `GraphObjectFactory`
-  - Removed functions `AccessTokenMetadata::getProperty`, `GraphNode::getProperty`, `GraphEdge::getProperty`
-  - Removed functions `GraphNode::getPropertyNames`, `GraphEdge::getPropertyNames`
-  - Removed functions `GraphNode::getPropertyNames`, `GraphEdge::getPropertyNames`
-  - Removed functions `Response::getGraphObject`, `Response::getGraphList`
-  - Rename function `GraphNode::getObjectMap` to `GraphNode::getNodeMap`
+- 6.0.0 (2021-07-24)
+  - Migrated automated tests from Travis CI to Github Actions (#01d6a41)
+  - Added StyleCI as well as Scrutinizer for code style checks
+  - Bumped minimum PHP version requirement to 7.4, added PHP 8.0 (#8052aba)
+  - Updated minimum PHPUnit to version 9.3 (#8052aba)
+  - Reverted back to Mockery (1.0) over deprecated 'prophesize' (#8052aba)
+  -
 
 ## 5.x
 
