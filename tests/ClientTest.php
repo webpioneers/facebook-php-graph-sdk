@@ -257,9 +257,8 @@ class ClientTest extends TestCase
     public function initializeTestApp()
     {
         if (!file_exists(__DIR__.'/TestCredentials.php')) {
-            throw new SDKException(
-                'You must create a TestCredentials.php file from TestCredentials.php.dist'
-            );
+            $this->markTestSkipped('You must create a TestCredentials.php file from TestCredentials.php.dist');
+            return;
         }
 
         if (!strlen(TestCredentials::$appId) ||
