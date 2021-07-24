@@ -66,7 +66,7 @@ class GraphAchievementTest extends AbstractGraphNode
 
         $isNoFeedStory = $graphNode->isNoFeedStory();
 
-        $this->assertInternalType('bool', $isNoFeedStory);
+        $this->assertIsBool($isNoFeedStory);
     }
 
     public function testDatesGetCastToDateTime()

@@ -34,9 +34,9 @@ class GraphSessionInfoTest extends TestCase
      */
     protected $responseMock;
 
-    protected function setUp()
+    protected function setUp(): void
     {
-        $this->responseMock = $this->prophesize(Response::class);
+        $this->responseMock = \Mockery::mock(Response::class);
     }
 
     public function testDatesGetCastToDateTime()
@@ -46,8 +46,8 @@ class GraphSessionInfoTest extends TestCase
             'issued_at' => 1337,
         ];
 
-        $this->responseMock->getDecodedBody()->willReturn($dataFromGraph);
-        $factory = new GraphNodeFactory($this->responseMock->reveal());
+        $this->responseMock->shouldReceive('getDecodedBody')->andReturn($dataFromGraph);
+        $factory = new GraphNodeFactory($this->responseMock);
 
         $graphNode = $factory->makeGraphSessionInfo();
 

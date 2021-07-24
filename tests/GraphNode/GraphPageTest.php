@@ -36,9 +36,9 @@ class GraphPageTest extends TestCase
      */
     protected $responseMock;
 
-    protected function setUp()
+    protected function setUp(): void
     {
-        $this->responseMock = $this->prophesize(Response::class);
+        $this->responseMock = \Mockery::mock(Response::class);
     }
 
     public function testPagePropertiesReturnGraphPageObjects()
@@ -56,8 +56,8 @@ class GraphPageTest extends TestCase
             ],
         ];
 
-        $this->responseMock->getDecodedBody()->willReturn($dataFromGraph);
-        $factory = new GraphNodeFactory($this->responseMock->reveal());
+        $this->responseMock->shouldReceive('getDecodedBody')->andReturn($dataFromGraph);
+        $factory = new GraphNodeFactory($this->responseMock);
         $graphNode = $factory->makeGraphPage();
 
         $bestPage = $graphNode->getBestPage();
@@ -81,8 +81,8 @@ class GraphPageTest extends TestCase
             ],
         ];
 
-        $this->responseMock->getDecodedBody()->willReturn($dataFromGraph);
-        $factory = new GraphNodeFactory($this->responseMock->reveal());
+        $this->responseMock->shouldReceive('getDecodedBody')->andReturn($dataFromGraph);
+        $factory = new GraphNodeFactory($this->responseMock);
         $graphNode = $factory->makeGraphPage();
 
         $location = $graphNode->getLocation();

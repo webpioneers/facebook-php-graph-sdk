@@ -19,41 +19,17 @@
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
  * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
  * DEALINGS IN THE SOFTWARE.
+ *
  */
-namespace Facebook\Tests\FileUpload;
+namespace Facebook\Tests;
 
-use Facebook\FileUpload\File;
-use PHPUnit\Framework\TestCase;
-
-class FileTest extends TestCase
+class TestCredentials
 {
-    protected $testFile = '';
-
-    protected function setUp(): void
-    {
-        $this->testFile = __DIR__ . '/../foo.txt';
-    }
-
-    public function testCanOpenAndReadAndCloseAFile()
-    {
-        $file = new File($this->testFile);
-        $fileContents = $file->getContents();
-
-        $this->assertEquals('This is a text file used for testing. Let\'s dance.', $fileContents);
-    }
-
-    public function testPartialFilesCanBeCreated()
-    {
-        $file = new File($this->testFile, 14, 5);
-        $fileContents = $file->getContents();
-
-        $this->assertEquals('is a text file', $fileContents);
-    }
-
-    public function testTryingToOpenAFileThatDoesntExistsThrows()
-    {
-        $this->expectException(\Facebook\Exception\SDKException::class);
-
-        new File('does_not_exist.file');
-    }
+    /**
+     * These must be filled out with valid Facebook app details for the tests to
+     * run.
+     */
+    public static $appId = '2692404607661648';
+    public static $appSecret = '39ed405aedd15e6e297d9ede23d2bd61';
 }
+

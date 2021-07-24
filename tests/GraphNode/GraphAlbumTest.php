@@ -37,9 +37,9 @@ class GraphAlbumTest extends TestCase
      */
     protected $responseMock;
 
-    protected function setUp()
+    protected function setUp(): void
     {
-        $this->responseMock = $this->prophesize(Response::class);
+        $this->responseMock = \Mockery::mock(Response::class);
     }
 
     public function testDatesGetCastToDateTime()
@@ -51,8 +51,8 @@ class GraphAlbumTest extends TestCase
             'name' => 'Bar',
         ];
 
-        $this->responseMock->getDecodedBody()->willReturn($dataFromGraph);
-        $factory = new GraphNodeFactory($this->responseMock->reveal());
+        $this->responseMock->shouldReceive('getDecodedBody')->andReturn($dataFromGraph);
+        $factory = new GraphNodeFactory($this->responseMock);
         $graphNode = $factory->makeGraphAlbum();
 
         $createdTime = $graphNode->getCreatedTime();
@@ -72,8 +72,8 @@ class GraphAlbumTest extends TestCase
             ],
         ];
 
-        $this->responseMock->getDecodedBody()->willReturn($dataFromGraph);
-        $factory = new GraphNodeFactory($this->responseMock->reveal());
+        $this->responseMock->shouldReceive('getDecodedBody')->andReturn($dataFromGraph);
+        $factory = new GraphNodeFactory($this->responseMock);
         $graphNode = $factory->makeGraphAlbum();
 
         $from = $graphNode->getFrom();
@@ -92,8 +92,8 @@ class GraphAlbumTest extends TestCase
             ]
         ];
 
-        $this->responseMock->getDecodedBody()->willReturn($dataFromGraph);
-        $factory = new GraphNodeFactory($this->responseMock->reveal());
+        $this->responseMock->shouldReceive('getDecodedBody')->andReturn($dataFromGraph);
+        $factory = new GraphNodeFactory($this->responseMock);
         $graphNode = $factory->makeGraphAlbum();
 
         $place = $graphNode->getPlace();

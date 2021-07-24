@@ -36,9 +36,9 @@ class GraphGroupTest extends TestCase
      */
     protected $responseMock;
 
-    protected function setUp()
+    protected function setUp(): void
     {
-        $this->responseMock = $this->prophesize(Response::class);
+        $this->responseMock = \Mockery::mock(Response::class);
     }
 
     public function testCoverGetsCastAsGraphCoverPhoto()
@@ -47,8 +47,8 @@ class GraphGroupTest extends TestCase
             'cover' => ['id' => '1337']
         ];
 
-        $this->responseMock->getDecodedBody()->willReturn($dataFromGraph);
-        $factory = new GraphNodeFactory($this->responseMock->reveal());
+        $this->responseMock->shouldReceive('getDecodedBody')->andReturn($dataFromGraph);
+        $factory = new GraphNodeFactory($this->responseMock);
         $graphNode = $factory->makeGraphGroup();
 
         $cover = $graphNode->getCover();
@@ -61,8 +61,8 @@ class GraphGroupTest extends TestCase
             'venue' => ['id' => '1337']
         ];
 
-        $this->responseMock->getDecodedBody()->willReturn($dataFromGraph);
-        $factory = new GraphNodeFactory($this->responseMock->reveal());
+        $this->responseMock->shouldReceive('getDecodedBody')->andReturn($dataFromGraph);
+        $factory = new GraphNodeFactory($this->responseMock);
         $graphNode = $factory->makeGraphGroup();
 
         $venue = $graphNode->getVenue();

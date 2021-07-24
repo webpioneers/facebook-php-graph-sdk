@@ -38,9 +38,9 @@ class GraphEventTest extends TestCase
      */
     protected $responseMock;
 
-    protected function setUp()
+    protected function setUp(): void
     {
-        $this->responseMock = $this->prophesize(Response::class);
+        $this->responseMock = \Mockery::mock(Response::class);
     }
 
     public function testCoverGetsCastAsGraphCoverPhoto()
@@ -49,8 +49,8 @@ class GraphEventTest extends TestCase
             'cover' => ['id' => '1337']
         ];
 
-        $this->responseMock->getDecodedBody()->willReturn($dataFromGraph);
-        $factory = new GraphNodeFactory($this->responseMock->reveal());
+        $this->responseMock->shouldReceive('getDecodedBody')->andReturn($dataFromGraph);
+        $factory = new GraphNodeFactory($this->responseMock);
         $graphNode = $factory->makeGraphEvent();
 
         $cover = $graphNode->getCover();
@@ -63,8 +63,8 @@ class GraphEventTest extends TestCase
             'place' => ['id' => '1337']
         ];
 
-        $this->responseMock->getDecodedBody()->willReturn($dataFromGraph);
-        $factory = new GraphNodeFactory($this->responseMock->reveal());
+        $this->responseMock->shouldReceive('getDecodedBody')->andReturn($dataFromGraph);
+        $factory = new GraphNodeFactory($this->responseMock);
         $graphNode = $factory->makeGraphEvent();
 
         $place = $graphNode->getPlace();
@@ -77,8 +77,8 @@ class GraphEventTest extends TestCase
             'picture' => ['id' => '1337']
         ];
 
-        $this->responseMock->getDecodedBody()->willReturn($dataFromGraph);
-        $factory = new GraphNodeFactory($this->responseMock->reveal());
+        $this->responseMock->shouldReceive('getDecodedBody')->andReturn($dataFromGraph);
+        $factory = new GraphNodeFactory($this->responseMock);
         $graphNode = $factory->makeGraphEvent();
 
         $picture = $graphNode->getPicture();
@@ -91,8 +91,8 @@ class GraphEventTest extends TestCase
             'parent_group' => ['id' => '1337']
         ];
 
-        $this->responseMock->getDecodedBody()->willReturn($dataFromGraph);
-        $factory = new GraphNodeFactory($this->responseMock->reveal());
+        $this->responseMock->shouldReceive('getDecodedBody')->andReturn($dataFromGraph);
+        $factory = new GraphNodeFactory($this->responseMock);
         $graphNode = $factory->makeGraphEvent();
 
         $parentGroup = $graphNode->getParentGroup();

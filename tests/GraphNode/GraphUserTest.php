@@ -38,9 +38,9 @@ class GraphUserTest extends TestCase
      */
     protected $responseMock;
 
-    protected function setUp()
+    protected function setUp(): void
     {
-        $this->responseMock = $this->prophesize(Response::class);
+        $this->responseMock = \Mockery::mock(Response::class);
     }
 
     public function testDatesGetCastToDateTime()
@@ -49,8 +49,8 @@ class GraphUserTest extends TestCase
             'updated_time' => '2016-04-26 13:22:05',
         ];
 
-        $this->responseMock->getDecodedBody()->willReturn($dataFromGraph);
-        $factory = new GraphNodeFactory($this->responseMock->reveal());
+        $this->responseMock->shouldReceive('getDecodedBody')->andReturn($dataFromGraph);
+        $factory = new GraphNodeFactory($this->responseMock);
         $graphNode = $factory->makeGraphUser();
 
         $updatedTime = $graphNode->getField('updated_time');
@@ -64,8 +64,8 @@ class GraphUserTest extends TestCase
             'birthday' => '1984/01/01',
         ];
 
-        $this->responseMock->getDecodedBody()->willReturn($dataFromGraph);
-        $factory = new GraphNodeFactory($this->responseMock->reveal());
+        $this->responseMock->shouldReceive('getDecodedBody')->andReturn($dataFromGraph);
+        $factory = new GraphNodeFactory($this->responseMock);
         $graphNode = $factory->makeGraphUser();
 
         $birthday = $graphNode->getBirthday();
@@ -85,8 +85,8 @@ class GraphUserTest extends TestCase
             'birthday' => '03/21',
         ];
 
-        $this->responseMock->getDecodedBody()->willReturn($dataFromGraph);
-        $factory = new GraphNodeFactory($this->responseMock->reveal());
+        $this->responseMock->shouldReceive('getDecodedBody')->andReturn($dataFromGraph);
+        $factory = new GraphNodeFactory($this->responseMock);
         $graphNode = $factory->makeGraphUser();
 
         $birthday = $graphNode->getBirthday();
@@ -102,8 +102,8 @@ class GraphUserTest extends TestCase
             'birthday' => '1984',
         ];
 
-        $this->responseMock->getDecodedBody()->willReturn($dataFromGraph);
-        $factory = new GraphNodeFactory($this->responseMock->reveal());
+        $this->responseMock->shouldReceive('getDecodedBody')->andReturn($dataFromGraph);
+        $factory = new GraphNodeFactory($this->responseMock);
         $graphNode = $factory->makeGraphUser();
 
         $birthday = $graphNode->getBirthday();
@@ -128,8 +128,8 @@ class GraphUserTest extends TestCase
             ],
         ];
 
-        $this->responseMock->getDecodedBody()->willReturn($dataFromGraph);
-        $factory = new GraphNodeFactory($this->responseMock->reveal());
+        $this->responseMock->shouldReceive('getDecodedBody')->andReturn($dataFromGraph);
+        $factory = new GraphNodeFactory($this->responseMock);
         $graphNode = $factory->makeGraphUser();
 
         $hometown = $graphNode->getHometown();
@@ -150,8 +150,8 @@ class GraphUserTest extends TestCase
             ],
         ];
 
-        $this->responseMock->getDecodedBody()->willReturn($dataFromGraph);
-        $factory = new GraphNodeFactory($this->responseMock->reveal());
+        $this->responseMock->shouldReceive('getDecodedBody')->andReturn($dataFromGraph);
+        $factory = new GraphNodeFactory($this->responseMock);
         $graphNode = $factory->makeGraphUser();
 
         $significantOther = $graphNode->getSignificantOther();
@@ -172,8 +172,8 @@ class GraphUserTest extends TestCase
             ],
         ];
 
-        $this->responseMock->getDecodedBody()->willReturn($dataFromGraph);
-        $factory = new GraphNodeFactory($this->responseMock->reveal());
+        $this->responseMock->shouldReceive('getDecodedBody')->andReturn($dataFromGraph);
+        $factory = new GraphNodeFactory($this->responseMock);
         $graphNode = $factory->makeGraphUser();
 
         $Picture = $graphNode->getPicture();

@@ -30,21 +30,21 @@ use Prophecy\Prophecy\ObjectProphecy;
 abstract class AbstractGraphNode extends TestCase
 {
     /**
-     * @var ObjectProphecy|Response
+     * @var \Facebook\Response|\Mockery\Mock
      */
     protected $responseMock;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         parent::setUp();
 
-        $this->responseMock = $this->prophesize(Response::class);
+        $this->responseMock = \Mockery::mock(Response::class);
     }
 
     protected function makeFactoryWithData($data)
     {
-        $this->responseMock->getDecodedBody()->willReturn($data);
+        $this->responseMock->shouldReceive('getDecodedBody')->andReturn($data);
 
-        return new GraphNodeFactory($this->responseMock->reveal());
+        return new GraphNodeFactory($this->responseMock);
     }
 }
