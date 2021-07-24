@@ -11,7 +11,6 @@ Starting with version 5, the Facebook PHP SDK follows [SemVer](http://semver.org
   - Bumped minimum PHP version requirement to 7.4, added PHP 8.0 (#8052aba)
   - Updated minimum PHPUnit to version 9.3 (#8052aba)
   - Reverted back to Mockery (1.0) over deprecated 'prophesize' (#8052aba)
-  -
 
 ## 5.x
 
