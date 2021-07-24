@@ -1,30 +1,18 @@
-# Facebook SDK for PHP (v6)
+# Facebook Graph PHP SDK
 
-## NOTICE: This branch is under active development. For the stable release please use the [5.x branch](https://github.com/facebook/php-graph-sdk/tree/5.x).
-
-[![Build Status](https://img.shields.io/travis/facebook/php-graph-sdk/master.svg)](https://travis-ci.org/facebook/php-graph-sdk)
-[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/facebook/php-graph-sdk/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/facebook/php-graph-sdk/?branch=master)
-[![Code Coverage](https://scrutinizer-ci.com/g/facebook/php-graph-sdk/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/facebook/php-graph-sdk/?branch=master)
-[![Development Version](http://img.shields.io/badge/Development%20Version-v6.0-orange.svg)](https://packagist.org/packages/facebook/graph-sdk)
-
-
-This repository contains the open source PHP SDK that allows you to access the Facebook Platform from your PHP app.
-
+This repository contains the open source PHP SDK that allows you to access the Facebook Platform from your PHP app. It is modified to allow compatibility, view the previous SDK version [here](https://github.com/facebookarchive/php-graph-sdk)
 
 ## Installation
 
 The Facebook PHP SDK can be installed with [Composer](https://getcomposer.org/). Run this command:
 
 ```sh
-composer require facebook/graph-sdk php-http/curl-client guzzlehttp/psr7
+composer require joelbutcher/facebook-graph-sdk
 ```
-
-Why the extra packages? We give you the flexibility to choose what HTTP client (e.g. cURL or Guzzle) to use and what PSR-7 implementation you prefer. Read more about this at the [HTTPlug documentation](http://php-http.readthedocs.io/en/latest/httplug/users.html).
-
 
 ## Usage
 
-> **Note:** This version of the Facebook SDK for PHP requires PHP 5.6 or greater.
+> **Note:** This version of the Facebook SDK for PHP requires PHP 8.0 or greater.
 
 Simple GET example of a user's profile.
 
@@ -38,21 +26,21 @@ $fb = new \Facebook\Facebook([
   //'default_access_token' => '{access-token}', // optional
 ]);
 
-// Use one of the helper classes to get a Facebook\Authentication\AccessToken entity.
+// Use one of the helper classes to get a Facebook\Authentication\AccessToken instance.
 //   $helper = $fb->getRedirectLoginHelper();
 //   $helper = $fb->getJavaScriptHelper();
 //   $helper = $fb->getCanvasHelper();
 //   $helper = $fb->getPageTabHelper();
 
 try {
-  // Get the \Facebook\GraphNode\GraphUser object for the current user.
+  // Get the \Facebook\GraphNodes\GraphUser object for the current user.
   // If you provided a 'default_access_token', the '{access-token}' is optional.
   $response = $fb->get('/me', '{access-token}');
-} catch(\Facebook\Exception\FacebookResponseException $e) {
+} catch(\Facebook\Exceptions\FacebookResponseException $e) {
   // When Graph returns an error
   echo 'Graph returned an error: ' . $e->getMessage();
   exit;
-} catch(\Facebook\Exception\FacebookSDKException $e) {
+} catch(\Facebook\Exceptions\FacebookSDKException $e) {
   // When validation fails or other local issues
   echo 'Facebook SDK returned an error: ' . $e->getMessage();
   exit;
@@ -63,7 +51,6 @@ echo 'Logged in as ' . $me->getName();
 ```
 
 Complete documentation, installation instructions, and examples are available [here](docs/).
-
 
 ## Tests
 
@@ -81,17 +68,14 @@ By default the tests will send live HTTP requests to the Graph API. If you are w
 $ ./vendor/bin/phpunit --exclude-group integration
 ```
 
-
 ## Contributing
 
-For us to accept contributions you will have to first have signed the [Contributor License Agreement](https://developers.facebook.com/opensource/cla). Please see [CONTRIBUTING](https://github.com/facebook/php-graph-sdk/blob/master/CONTRIBUTING.md) for details.
-
+For us to accept contributions you will have to first have signed the [Contributor License Agreement](https://developers.facebook.com/opensource/cla). Please see [CONTRIBUTING](https://github.com/joelbutcher/facebook-graph-sdk-php-8/blob/master/CONTRIBUTING.md) for details.
 
 ## License
 
-Please see the [license file](https://github.com/facebook/php-graph-sdk/blob/master/LICENSE) for more information.
-
+Please see the [license file](https://github.com/joelbutcher/facebook-graph-sdk-php-8/blob/master/LICENSE) for more information.
 
 ## Security Vulnerabilities
 
-If you have found a security issue, please contact the maintainers directly at [me@sammyk.me](mailto:me@sammyk.me).
+If you have found a security issue, please contact the maintainers directly at [joel@joelbutcher.co.uk](mailto:joel@joelbutcher.co.uk).
