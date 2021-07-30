@@ -2,6 +2,22 @@
 
 This repository contains the open source PHP SDK that allows you to access the Facebook Platform from your PHP app. It is modified to allow compatibility, view the previous SDK version [here](https://github.com/facebookarchive/php-graph-sdk)
 
+<p align="center">
+    <a href="https://github.com/joelbutcher/facebook-php-graph-sdk/actions">
+        <img src="https://github.com/joelbutcher/facebook-php-graph-sdk/workflows/tests/badge.svg" alt="Build Status">
+    </a>
+    <a href="https://packagist.org/packages/joelbutcher/facebook-php-graph-sdk">
+        <img src="https://img.shields.io/packagist/dt/joelbutcher/facebook-php-graph-sdk" alt="Total Downloads">
+    </a>
+    <a href="https://packagist.org/packages/joelbutcher/facebook-php-graph-sdk">
+        <img src="https://img.shields.io/packagist/v/joelbutcher/facebook-php-graph-sdk" alt="Latest Stable Version">
+    </a>
+    <a href="https://packagist.org/packages/joelbutcher/facebook-php-graph-sdk">
+        <img src="https://img.shields.io/packagist/l/joelbutcher/facebook-php-graph-sdk" alt="License">
+    </a>
+</p>
+
+
 ## Installation
 
 The Facebook PHP SDK can be installed with [Composer](https://getcomposer.org/). Run this command:
