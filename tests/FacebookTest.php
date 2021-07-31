@@ -41,9 +41,9 @@ use PHPUnit\Framework\TestCase;
 class FacebookTest extends TestCase
 {
     protected $config = [
-        'app_id'                => '1337',
-        'app_secret'            => 'foo_secret',
-        'default_graph_version' => 'v0.0',
+        'app_id' => '1337',
+        'app_secret' => 'foo_secret',
+        'default_graph_version' => 'v11.0',
     ];
 
     public function testInstantiatingWithoutAppIdThrows()
@@ -53,8 +53,8 @@ class FacebookTest extends TestCase
         // unset value so there is no fallback to test expected Exception
         putenv(Facebook::APP_ID_ENV_NAME.'=');
         $config = [
-            'app_secret'            => 'foo_secret',
-            'default_graph_version' => 'v0.0',
+            'app_secret' => 'foo_secret',
+            'default_graph_version' => 'v11.0',
         ];
         new Facebook($config);
     }
@@ -67,7 +67,7 @@ class FacebookTest extends TestCase
         putenv(Facebook::APP_SECRET_ENV_NAME.'=');
         $config = [
             'app_id'                => 'foo_id',
-            'default_graph_version' => 'v0.0',
+            'default_graph_version' => 'v11.0',
         ];
         new Facebook($config);
     }
