@@ -41,8 +41,8 @@ use PHPUnit\Framework\TestCase;
 class FacebookTest extends TestCase
 {
     protected $config = [
-        'app_id' => '1337',
-        'app_secret' => 'foo_secret',
+        'app_id'                => '1337',
+        'app_secret'            => 'foo_secret',
         'default_graph_version' => 'v11.0',
     ];
 
@@ -53,7 +53,7 @@ class FacebookTest extends TestCase
         // unset value so there is no fallback to test expected Exception
         putenv(Facebook::APP_ID_ENV_NAME.'=');
         $config = [
-            'app_secret' => 'foo_secret',
+            'app_secret'            => 'foo_secret',
             'default_graph_version' => 'v11.0',
         ];
         new Facebook($config);
